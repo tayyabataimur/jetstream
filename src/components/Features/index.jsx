@@ -58,7 +58,7 @@ const Features = () => {
       </p>
       <div className={styles.featuresWrapper}>
         {data.map((feature) => (
-          <Feature {...feature} />
+          <Feature key={feature.heading} {...feature} />
         ))}
       </div>
     </div>
