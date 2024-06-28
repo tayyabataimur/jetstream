@@ -9,7 +9,6 @@ import Features from "../components/Features";
 export default function Root() {
   return (
     <div className={styles.root}>
-      <Navbar />
       <Hero />
       <Services />
       <Features />
