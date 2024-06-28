@@ -1,0 +1,62 @@
+.container {
+    align-items: center;
+    background-image: url('/blue-background.svg');
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+    border: 1px solid #D0D5DD;
+    border-radius: 20px;
+    padding: 3rem 2rem 1rem 2rem;
+    width: 100%;
+    gap: 2rem;
+}
+
+.container h2 {
+    text-align: center;
+}
+
+.container>p {
+    max-width: 30rem;
+    text-align: center;
+}
+
+.gradient {
+    background: linear-gradient(90deg, #378CD4 0%, #204B7E 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* Clip the background to the text */
+    -webkit-text-fill-color: transparent;
+    /* Make the text color transparent */
+}
+
+.featuresWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.featureContainer {
+    background: #F2F4F7;
+    border-radius: 20px;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.featureContainer h3 {
+    text-align: center;
+}
+
+.featureContainer img {
+    margin: 0 auto;
+    height: 3rem;
+}
+
+@media (min-width: 768px) {
+    .featuresWrapper {
+        flex-direction: row;
+    }
+}

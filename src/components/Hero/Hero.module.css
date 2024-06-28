@@ -1,0 +1,74 @@
+.hero {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.heading {
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.heading:nth-of-type(2) {
+  background: linear-gradient(90deg, #b7ddff 0%, #0966cb 100%);
+  background-clip: text;
+  -webkit-background-clip: text; /* Clip the background to the text */
+  -webkit-text-fill-color: transparent; /* Make the text color transparent */
+}
+
+.heroCard {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  position: absolute;
+  padding: 1rem;
+  z-index: 10;
+  max-width: 500px;
+}
+
+.description {
+  color: #ffffff;
+  margin-top: 1rem;
+}
+
+.video {
+  height: 400px;
+  object-fit: cover;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 20px;
+  background: #2f77b9;
+  color: #fff;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding: 0.5rem 2rem;
+}
+
+.button img {
+  height: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .video {
+    height: auto;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+
+  .hero {
+    align-items: flex-start;
+  }
+
+  .heroCard {
+    margin-top: 3.5rem;
+    margin-left: 6rem;
+    padding: 1rem 2rem;
+  }
+}

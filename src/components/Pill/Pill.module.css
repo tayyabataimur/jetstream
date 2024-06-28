@@ -1,0 +1,8 @@
+.pill {
+    border: 1px solid #2C6DAA;
+    border-radius: 20px;
+    color: #2C6DAA;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    text-transform: uppercase;
+}
