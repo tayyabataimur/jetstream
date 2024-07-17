@@ -1,22 +1,28 @@
 .container {
+    align-items: center;
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
     justify-content: center;
-    max-width: 900px;
-    border: 1px solid #D0D5DD;
+    max-width: 1200px;
     border-radius: 20px;
     padding: 0 2rem 1rem 2rem;
     width: 100%;
 }
 
 .heading {
-    margin-top: -3rem;
+    color: #0d3e69;
+    font-size: 2rem;
+    font-weight: 600;
     text-align: center;
 }
 
-.paragraph {
-    margin-top: 1rem;
-    text-align: center;
+.container .pill {
+    background: #a2d4ff;
+    border-color: #a2d4ff;
+    color: #204B7E;
+    font-weight: 800;
+    padding: 0.5rem 1rem;
 }
 
 .gradient {
@@ -27,14 +33,18 @@
 }
 
 .servicesWrapper {
+    box-sizing: border-box;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     margin-top: 1rem;
-    gap: 4rem;
+    gap: 2rem;
+    width: 100%;
 }
 
 .serviceImg {
-    height: 300px;
+    width: 100%;
 }
 
 .serviceImg.reversed {
@@ -45,6 +55,7 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    width: 260px;
 }
 
 .serviceContent {
@@ -72,16 +83,16 @@
 }
 
 .title {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
 }
 
 @media (min-width: 768px) {
     .service {
-        flex-direction: row;
+        /* flex-direction: row; */
     }
 
     .serviceImg.reversed {
-        order: 2;
+        /* order: 2; */
     }
 
     .serviceContent {
@@ -90,10 +101,10 @@
     }
 
     .servicesWrapper {
-        margin-top: 6rem;
+        /* margin-top: 3rem; */
     }
 
-    .heading {
+    /* .heading {
         margin-top: -12rem;
-    }
+    } */
 }
