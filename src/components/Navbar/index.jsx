@@ -3,11 +3,30 @@ import styles from "./Navbar.module.css";
 import { useState, useEffect } from "react";
 import cx from "classnames";
 
+const Links = ({ classname }) => (
+  <ol className={classname}>
+    <li>
+      <Link to={"/404"}>Aircraft charters</Link>
+    </li>
+    <li>
+      <Link to={"/404"}>Aircraft parts procurement</Link>
+    </li>
+    <li>
+      <Link to={"/404"}>About us</Link>
+    </li>
+    <li>
+      <Link to={"/404"}>Contact</Link>
+    </li>
+  </ol>
+);
+
 const Navbar = () => {
   const [expanded, setExpanded] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const scrollThreshold = 450;
+  const scrollThreshold = 350;
+
+  const menuIconPath = !expanded ? "/hamburger.svg" : "/cross.svg";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,70 +49,24 @@ const Navbar = () => {
   return (
     <nav className={cx(styles.navbar, { [styles.scrolled]: scrolled })}>
       {/* Logo */}
-      <img className={styles.logo} src="/logo.svg" />
+      <a href="/">
+        <img className={styles.logo} src="/logo.svg" />
+      </a>
 
       {/* Links */}
-      <ol className={styles.links}>
-        <li>
-          <Link to={"/home"}>Flight support</Link>
-        </li>
-        <li>
-          <Link to={"/home"}>Fuel</Link>
-        </li>
-        <li>
-          <Link to={"/home"}>Trip planning</Link>
-        </li>
-        <li>
-          <Link to={"/home"}>Aircraft charters</Link>
-        </li>
-        <li>
-          <Link to={"/home"}>Aircraft parts procurement</Link>
-        </li>
-        <li>
-          <Link to={"/home"}>Contact</Link>
-        </li>
-      </ol>
+      <Links classname={styles.links} />
 
       {/* Menu Icon */}
-      {!expanded ? (
-        <button
-          className={cx(styles.menu)}
-          onClick={() => setExpanded(!expanded)}
-        >
-          <img src="/hamburger.svg" />
-        </button>
-      ) : (
-        <>
-          <button
-            className={styles.menu}
-            onClick={() => setExpanded(!expanded)}
-          >
-            &#10005;
-          </button>
-          <div className={styles.sideBar}>
-            <ol className={styles.menuList}>
-              <li>
-                <Link to={"/home"}>Flight support</Link>
-              </li>
-              <li>
-                <Link to={"/home"}>Fuel</Link>
-              </li>
-              <li>
-                <Link to={"/home"}>Trip planning</Link>
-              </li>
-              <li>
-                <Link to={"/home"}>Aircraft charters</Link>
-              </li>
-              <li>
-                <Link to={"/home"}>Aircraft parts procurement</Link>
-              </li>
-              <li>
-                <Link to={"/home"}>Contact</Link>
-              </li>
-            </ol>
-          </div>
-        </>
-      )}
+      <button
+        className={cx(styles.menu)}
+        onClick={() => setExpanded(!expanded)}
+      >
+        <img src={menuIconPath} />
+      </button>
+      <div className={cx(styles.sideBar, { [styles.expanded]: expanded })}>
+        <Links classname={cx(styles.menuList)} />
+        <button className="primaryButton">Book a consultation</button>
+      </div>
     </nav>
   );
 };

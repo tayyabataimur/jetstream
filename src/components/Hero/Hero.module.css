@@ -31,7 +31,7 @@
 
 .description {
   color: #ffffff;
-  margin-top: 1rem;
+  margin: 1rem 0;
 }
 
 .video {
@@ -39,21 +39,6 @@
   object-fit: cover;
 }
 
-.button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border-radius: 20px;
-  background: #2f77b9;
-  color: #fff;
-  gap: 0.5rem;
-  margin-top: 2rem;
-  padding: 0.5rem 2rem;
-}
-
-.button img {
-  height: 1.5rem;
-}
 
 @media (min-width: 768px) {
   .video {
@@ -71,6 +56,6 @@
   .heroCard {
     border-radius: 10px;
     margin-left: 6rem;
-    padding: 1rem 2rem;
+    padding: 2rem;
   }
 }

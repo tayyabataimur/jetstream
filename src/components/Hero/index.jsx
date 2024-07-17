@@ -5,18 +5,19 @@ const Hero = () => {
     <header className={styles.hero}>
       <div className={styles.heroCard}>
         <h1 className={styles.heading}>
-          Your aircraft.
+          Personalized Flights.
           <br />
-          Our Promise.
         </h1>
-        <h1 className={styles.heading}>Managed with confidence</h1>
+        <h1 className={styles.heading}>Elevated Experience.</h1>
         <p className={styles.description}>
           Jetstream has over 8 years of experience in providing premium,
           personalized aircraft management services for private and commercial
           aircraft owners and operators.
         </p>
-        <button className={styles.button}>
-          Get a quote <img src="/arrow-right.svg" />
+        <button className="primaryButton">
+          <a className={styles.bookingLink} href="/404">
+            Book a consultation
+          </a>
         </button>
       </div>
       <video
