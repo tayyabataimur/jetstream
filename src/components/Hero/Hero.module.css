@@ -14,15 +14,15 @@
 .heading:nth-of-type(2) {
   background: linear-gradient(90deg, #b7ddff 0%, #0966cb 100%);
   background-clip: text;
-  -webkit-background-clip: text; /* Clip the background to the text */
-  -webkit-text-fill-color: transparent; /* Make the text color transparent */
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
 }
 
 .heroCard {
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 0;
   position: absolute;
-  padding: 1rem;
+  padding: 2rem;
   z-index: 10;
   max-width: 500px;
   margin-top: 3.5rem;
@@ -56,6 +56,5 @@
   .heroCard {
     border-radius: 10px;
     margin-left: 6rem;
-    padding: 2rem;
   }
 }
