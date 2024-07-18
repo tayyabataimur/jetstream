@@ -3,19 +3,27 @@ import styles from "./Navbar.module.css";
 import { useState, useEffect } from "react";
 import cx from "classnames";
 
-const Links = ({ classname }) => (
+const Links = ({ classname, handleClick }) => (
   <ol className={classname}>
     <li>
-      <Link to={"/404"}>Aircraft charters</Link>
+      <Link onClick={handleClick} to={"/404"}>
+        Aircraft charters
+      </Link>
     </li>
     <li>
-      <Link to={"/404"}>Aircraft parts procurement</Link>
+      <Link onClick={handleClick} to={"/404"}>
+        Aircraft parts procurement
+      </Link>
     </li>
     <li>
-      <Link to={"/404"}>About us</Link>
+      <Link onClick={handleClick} to={"/404"}>
+        About us
+      </Link>
     </li>
     <li>
-      <Link to={"/404"}>Contact</Link>
+      <Link onClick={handleClick} to={"/404"}>
+        Contact
+      </Link>
     </li>
   </ol>
 );
@@ -27,6 +35,8 @@ const Navbar = () => {
   const scrollThreshold = 350;
 
   const menuIconPath = !expanded ? "/hamburger.svg" : "/cross.svg";
+
+  const onLinkClick = () => setExpanded(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +64,7 @@ const Navbar = () => {
       </a>
 
       {/* Links */}
-      <Links classname={styles.links} />
+      <Links classname={styles.links} handleClick={onLinkClick} />
 
       {/* Menu Icon */}
       <button
@@ -64,7 +74,7 @@ const Navbar = () => {
         <img src={menuIconPath} />
       </button>
       <div className={cx(styles.sideBar, { [styles.expanded]: expanded })}>
-        <Links classname={cx(styles.menuList)} />
+        <Links classname={cx(styles.menuList)} handleClick={onLinkClick} />
         <button className="primaryButton">Book a consultation</button>
       </div>
     </nav>
