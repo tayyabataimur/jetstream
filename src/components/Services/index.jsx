@@ -5,7 +5,7 @@ import cx from "classnames";
 
 const data = [
   {
-    image: "/service-1.svg",
+    image: "/service-1.webp",
     title: "Ground Handling",
     description: `JSI provides quality handling to all types of fleet from wheels down
     to wheels up. Our extensive global network of top-notch partners can

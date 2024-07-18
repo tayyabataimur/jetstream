@@ -1,10 +1,11 @@
 .navbar {
     align-items: center;
-    background: rgba(0, 0, 0, 0.5);
+    background: #000000e0;
     border-bottom: 0.5px solid white;
     box-sizing: border-box;
     display: flex;
     gap: 1rem;
+    height: 70px;
     flex-direction: row;
     justify-content: center;
     padding: 1rem;
@@ -120,6 +121,7 @@
 @media(min-width: 990px) {
     .navbar {
         flex-direction: column;
+        height: 120px;
     }
 
     .links {

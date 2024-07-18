@@ -1,6 +1,9 @@
 import styles from "./Hero.module.css";
+import useMobileSize from "../../hooks/useMobileSize";
 
 const Hero = () => {
+  const isMobile = useMobileSize();
+
   return (
     <header className={styles.hero}>
       <div className={styles.heroCard}>
@@ -10,9 +13,9 @@ const Hero = () => {
         </h1>
         <h1 className={styles.heading}>Elevated Experience.</h1>
         <p className={styles.description}>
-          Jetstream has over 8 years of experience in providing premium,
-          personalized aircraft management services for private and commercial
-          aircraft owners and operators.
+          With over 15 years of expertise, Jetstream offers premium,
+          personalized aircraft management services tailored for private,
+          diplomatic, and commercial aircraft owners and operators.
         </p>
         <button className="primaryButton">
           <a className={styles.bookingLink} href="/404">
@@ -20,6 +23,7 @@ const Hero = () => {
           </a>
         </button>
       </div>
+      <img className={styles.heroImg} src="/hero.webp" />
       <video
         className={styles.video}
         autoPlay
