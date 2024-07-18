@@ -59,7 +59,7 @@ const Services = () => {
         additionalClassnames={styles.pill}
         text="From our excellency to yours"
       />
-      <h2 className={styles.heading}>Our core competencies.</h2>
+      <h2 className={styles.heading}>Our core competencies</h2>
       <div className={styles.servicesWrapper}>
         {data.map((service) => (
           <Service
