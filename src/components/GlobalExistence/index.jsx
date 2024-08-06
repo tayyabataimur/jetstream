@@ -1,4 +1,5 @@
 import styles from "./GlobalExistence.module.css";
+import cx from "classnames";
 
 const cities = [
   "Islamabad",
@@ -25,7 +26,9 @@ const GlobalExistence = () => {
             support services with a physical presence in Pakistan, UAE, Bahrain,
             Oman, and the UK.
           </p>
-          <button className="primaryButton">Learn more about us</button>
+          <button className={cx("primaryButton", styles.mainButton)}>
+            Learn more about us
+          </button>
         </div>
         {/* LOCATIONS */}
         <div className={styles.locations}>
@@ -36,6 +39,9 @@ const GlobalExistence = () => {
               </li>
             ))}
           </ul>
+          <button className={cx("primaryButton", styles.listButton)}>
+            Learn more about us
+          </button>
         </div>
         {/* IMAGES */}
         <div className={styles.images}>
