@@ -1,0 +1,30 @@
+.footer {
+    align-items: center;
+    background: #000;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 1rem 2rem;
+    width: 100%;
+}
+
+.footer p {
+    color: #aeaeae;
+    font-size: 0.75rem;
+}
+
+.socialMedia {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.socialLink img {
+    height: 24px;
+    width: 24px;
+}
+
+.socialMedia .socialLink:hover img {
+    filter: brightness(0) invert(1); /* This inverts the color of the SVG */
+  }
