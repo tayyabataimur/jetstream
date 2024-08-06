@@ -159,18 +159,23 @@ button {
 .primaryButton {
   display: flex;
   flex-direction: row;
+  font-size: 1rem;
   align-items: center;
-  border-radius: 10px;
-  background: #2f77b9;
+  border-radius: 20px;
+  background: #175992;
   color: #fff;
   text-align: center;
   gap: 0.5rem;
-  padding: 0.5rem 2rem;
+  padding: 0.75rem 2rem;
 }
 
 textarea:hover,
 input:hover {
   box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+}
+
+button {
+  font-family: 'Poppins';
 }
 
 h1 {
@@ -179,10 +184,16 @@ h1 {
   font-weight: 600;
 }
 
-h2, p {
+h2, p, li {
   font-family: 'Poppins';
   font-weight: 400;
   margin: 0;
+}
+
+h2 {
+  color: #0d3e69;
+  font-size: 2.5rem;
+  font-weight: 600;
 }
 
 h3 {
@@ -191,7 +202,7 @@ h3 {
   font-weight: 500;
 }
 
-p {
+p, li {
   color: #344054;
 }
 

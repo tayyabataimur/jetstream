@@ -11,15 +11,12 @@
 }
 
 .heading {
-    color: #0d3e69;
-    font-size: 2rem;
-    font-weight: 600;
     text-align: center;
 }
 
 .container .pill {
-    background: #a2d4ff;
-    border-color: #a2d4ff;
+    background: #cbe7ff;
+    border-color: #cbe7ff;
     color: #204B7E;
     font-weight: 800;
     padding: 0.5rem 1rem;
