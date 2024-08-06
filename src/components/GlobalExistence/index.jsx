@@ -1,3 +1,4 @@
+import WorldMap from "../WorldMap";
 import styles from "./GlobalExistence.module.css";
 import cx from "classnames";
 
@@ -17,18 +18,16 @@ const cities = [
 const GlobalExistence = () => {
   return (
     <div className={styles.container}>
+      <h2 className={styles.heading}>Global Existence</h2>
+      <p className={styles.description}>
+        Founded in 2009, JSI is a global provider of flight operations support
+        services with a physical presence in Pakistan, UAE, Bahrain, Oman, and
+        the UK.
+      </p>
       <div className={styles.wrapper}>
         {/* TEXT AND DESCRIPTION */}
         <div className={styles.textContent}>
-          <h2>Global Existence</h2>
-          <p>
-            Founded in 2009, JSI is a global provider of flight operations
-            support services with a physical presence in Pakistan, UAE, Bahrain,
-            Oman, and the UK.
-          </p>
-          <button className={cx("primaryButton", styles.mainButton)}>
-            Learn more about us
-          </button>
+          <WorldMap />
         </div>
         {/* LOCATIONS */}
         <div className={styles.locations}>
@@ -39,9 +38,6 @@ const GlobalExistence = () => {
               </li>
             ))}
           </ul>
-          <button className={cx("primaryButton", styles.listButton)}>
-            Learn more about us
-          </button>
         </div>
         {/* IMAGES */}
         <div className={styles.images}>
@@ -52,6 +48,9 @@ const GlobalExistence = () => {
           </div>
         </div>
       </div>
+      <button className={cx("primaryButton", styles.mainButton)}>
+        Learn more about us
+      </button>
     </div>
   );
 };
