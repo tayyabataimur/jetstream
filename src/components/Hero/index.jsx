@@ -18,7 +18,7 @@ const Hero = () => {
           diplomatic, and commercial aircraft owners and operators.
         </p>
         <button className="primaryButton">
-          <a className={styles.bookingLink} href="/404">
+          <a className={styles.bookingLink} href="/contactus">
             Book a consultation
           </a>
         </button>

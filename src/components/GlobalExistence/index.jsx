@@ -49,7 +49,7 @@ const GlobalExistence = () => {
         </div>
       </div>
       <button className={cx("primaryButton", styles.mainButton)}>
-        Learn more about us
+        <a href="/aircraftcharter">Learn more about us</a>
       </button>
     </div>
   );
