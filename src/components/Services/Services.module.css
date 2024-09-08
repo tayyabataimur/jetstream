@@ -56,7 +56,26 @@
     flex-direction: column;
     gap: 2rem;
     width: 260px;
+    perspective: 1000px;
+    transition: transform 0.3s;
 }
+
+.serviceInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s, box-shadow 0.3s;
+    transform-style: preserve-3d;
+    background-color: #fff; /* Assuming a white background */
+    border-radius: 8px; /* Optional: rounded corners */
+    overflow: hidden; /* Keeps content inside rounded corners */
+  }
+  
+  .service:hover .serviceInner {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+  }
+  
 
 .serviceContent {
     display: flex;
@@ -65,6 +84,7 @@
     justify-content: center;
     gap: 0.5rem;
     text-align: left;
+    padding: 20px;
 }
 
 .serviceContent img {

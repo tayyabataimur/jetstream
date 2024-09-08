@@ -40,13 +40,15 @@ const data = [
 const Service = (props) => {
   return (
     <div className={styles.service}>
-      <img
-        className={cx(styles.serviceImg, { [styles.reversed]: props.reversed })}
-        src={props.image}
-      />
-      <div className={styles.serviceContent}>
-        <h3 className={cx(styles.title, styles.gradient)}>{props.title}</h3>
-        <p>{props.description}</p>
+      <div className={styles.serviceInner}>
+        <img
+          className={cx(styles.serviceImg, { [styles.reversed]: props.reversed })}
+          src={props.image}
+        />
+        <div className={styles.serviceContent}>
+          <h3 className={cx(styles.title, styles.gradient)}>{props.title}</h3>
+          <p>{props.description}</p>
+        </div>
       </div>
     </div>
   );

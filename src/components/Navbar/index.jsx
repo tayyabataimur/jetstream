@@ -6,7 +6,7 @@ import cx from "classnames";
 const Links = ({ classname, handleClick }) => (
   <ol className={classname}>
     <li>
-      <Link onClick={handleClick} to={"/404"}>
+      <Link onClick={handleClick} to={"/aircraftcharter"}>
         Aircraft charters
       </Link>
     </li>
@@ -21,7 +21,7 @@ const Links = ({ classname, handleClick }) => (
       </Link>
     </li>
     <li>
-      <Link onClick={handleClick} to={"/404"}>
+      <Link onClick={handleClick} to={"/contactus"}>
         Contact
       </Link>
     </li>

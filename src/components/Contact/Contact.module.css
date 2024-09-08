@@ -1,0 +1,145 @@
+.contactContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 3rem;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    color: #4a4a4a;
+    margin-bottom: 3rem;
+    text-align: center;
+    max-width: 600px;
+}
+
+.formContainer {
+    display: flex;
+    width: 100%;
+    gap: 4rem;
+}
+
+.form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputGroup label {
+    font-size: 1.1rem;
+    color: #1a1a1a;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.inputGroup input,
+.inputGroup textarea {
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.inputGroup input:focus,
+.inputGroup textarea:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.inputGroup textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+.submitButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 1.25rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 600;
+}
+
+.submitButton:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.contactInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.infoItem {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.icon {
+    font-size: 2rem;
+    color: #007bff;
+}
+
+.infoItem p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #1a1a1a;
+}
+
+@media (max-width: 900px) {
+    .formContainer {
+        flex-direction: column;
+    }
+
+    .contactInfo {
+        order: -1;
+        margin-bottom: 3rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .contactContainer {
+        padding: 2rem 1rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .inputGroup input,
+    .inputGroup textarea,
+    .submitButton {
+        padding: 0.9rem;
+    }
+}
