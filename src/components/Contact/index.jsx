@@ -119,7 +119,7 @@ const ContactUs = () => {
         {/* UAE Contact */}
         <InfoCard>
           <ImageContainer>
-            <img src="https://via.placeholder.com/300x180" alt="UAE Office" />
+            <img src="/dubai.webp" alt="UAE Office" />
           </ImageContainer>
           <InfoContent>
             <Location>U.A.E</Location>
@@ -141,7 +141,7 @@ const ContactUs = () => {
         {/* Pakistan Contact */}
         <InfoCard>
           <ImageContainer>
-            <img src="https://via.placeholder.com/300x180" alt="Pakistan Office" />
+            <img src="/islamabad.webp" alt="Pakistan Office" />
           </ImageContainer>
           <InfoContent>
             <Location>Pakistan</Location>
@@ -163,7 +163,7 @@ const ContactUs = () => {
         {/* UK Contact */}
         <InfoCard>
           <ImageContainer>
-            <img src="https://via.placeholder.com/300x180" alt="UK Office" />
+            <img src="/london.webp" alt="UK Office" />
           </ImageContainer>
           <InfoContent>
             <Location>United Kingdom</Location>

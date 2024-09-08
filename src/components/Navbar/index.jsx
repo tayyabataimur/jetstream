@@ -11,12 +11,12 @@ const Links = ({ classname, handleClick }) => (
       </Link>
     </li>
     <li>
-      <Link onClick={handleClick} to={"/404"}>
+      <Link onClick={handleClick} to={"/parts"}>
         Aircraft parts procurement
       </Link>
     </li>
     <li>
-      <Link onClick={handleClick} to={"/404"}>
+      <Link onClick={handleClick} to={"/aboutus"}>
         About us
       </Link>
     </li>

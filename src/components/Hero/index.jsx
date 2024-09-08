@@ -29,7 +29,7 @@ const Hero = () => {
         autoPlay
         loop
         muted
-        src="/hero.mp4"
+        src="/jsi.mp4"
         width="100%"
       >
         Sorry, your browser doesn't support embedded videos, but don't worry,

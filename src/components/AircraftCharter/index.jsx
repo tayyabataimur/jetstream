@@ -143,12 +143,12 @@ const AircraftCharters = () => {
           {/* Aircraft Charters Section */}
           <Section>
             <ImageContainer>
-              <img src="https://via.placeholder.com/1200x800" alt="Aircraft Charters" />
+              <img src="/charter3.avif" alt="Aircraft Charters" />
             </ImageContainer>
             <SectionContent>
               <SectionHeader>Aircraft Charters</SectionHeader>
               <SectionText>
-                Our service covers full market research, recommendation, procurement, and legal services, with a focus on customer satisfaction.
+                Jetstream International service covers full market research, recommendation, procurement, and legal services, with a focus on customer satisfaction.
               </SectionText>
             </SectionContent>
           </Section>
@@ -156,7 +156,7 @@ const AircraftCharters = () => {
           {/* Aircraft Leasing Section */}
           <Section>
             <ImageContainer>
-              <img src="https://via.placeholder.com/1200x800" alt="Aircraft Leasing" />
+              <img src="/charter.avif" alt="Aircraft Leasing" />
             </ImageContainer>
             <SectionContent>
               <SectionHeader>Aircraft Leasing</SectionHeader>
@@ -169,7 +169,7 @@ const AircraftCharters = () => {
           {/* Engine Leasing Section */}
           <Section>
             <ImageContainer>
-              <img src="https://via.placeholder.com/1200x800" alt="Engine Leasing" />
+              <img src="/engine.webp" alt="Engine Leasing" />
             </ImageContainer>
             <SectionContent>
               <SectionHeader>Engine Leasing</SectionHeader>

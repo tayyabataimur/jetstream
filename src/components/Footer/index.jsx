@@ -18,6 +18,14 @@ const Footer = () => (
         <img src="/linkedin.svg" />
       </a>
     </div>
+    <div className={styles.proudlyAssociated}>
+      <p>Proudly associated with:</p>
+      <div className={styles.logoContainer}>
+        <img src="/nba.webp" alt="Company 1" className={styles.associatedLogo} />
+        <img src="/IBAA_Logo.webp" alt="Company 2" className={styles.associatedLogo} />
+        <img src="/aca2.png" alt="Company 2" className={styles.associatedLogo} />
+      </div>
+    </div>
   </div>
 );
 

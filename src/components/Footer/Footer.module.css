@@ -28,3 +28,40 @@
 .socialMedia .socialLink:hover img {
     filter: brightness(0) invert(1); /* This inverts the color of the SVG */
   }
+
+.proudlyAssociated {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.proudlyAssociated p {
+    color: #aeaeae;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.logoContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* Allow logos to wrap to the next line on smaller screens */
+    gap: 1rem; /* Adjusted spacing for better mobile compatibility */
+    justify-content: center; /* Center logos on smaller screens */
+}
+
+.associatedLogo {
+    height: 30px; /* Adjusted height for better mobile compatibility */
+    width: auto;
+    transition: transform 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.associatedLogo:hover {
+    transform: scale(1.1); /* Slight zoom-in effect on hover for elegance */
+}
+
+@media (max-width: 600px) {
+    .associatedLogo {
+        height: 25px; /* Further adjust height for smaller screens */
+    }
+}
