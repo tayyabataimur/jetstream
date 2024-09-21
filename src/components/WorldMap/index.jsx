@@ -1,95 +1,129 @@
+import React, { useEffect, useState, useRef, useId } from "react";
+import { csv } from "d3-fetch";
+import { scaleLinear } from "d3-scale";
 import {
   ComposableMap,
   Geographies,
   Geography,
-  Marker,
+  Sphere,
+  Graticule,
 } from "react-simple-maps";
-import featuresJSON from "./features.json";
-import styles from "./WorldMap.module.css";
+import { Tooltip } from "react-tooltip";
+import styled from "styled-components";
 
-const markers = [
-  {
-    markerOffset: -3,
-    name: "London",
-    coordinates: [-9.5072, 60.5276],
-  },
-  {
-    markerOffset: -3,
-    name: "Islamabad",
-    coordinates: [70.5072, 38.5276],
-  },
-  {
-    markerOffset: -3,
-    name: "Islamabad",
-    coordinates: [62.5072, 32.5276],
-  },
-  {
-    markerOffset: -3,
-    name: "UAE",
-    coordinates: [50.5072, 30.5276],
-  },
-];
+const TooltipWrapper = styled.div`
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+`;
 
-const WorldMap = () => {
+const TooltipText = styled.div`
+  visibility: ${(props) => (props.isVisible ? "visible" : "hidden")};
+  background-color: #0d3e69; /* Dark blue background */
+  color: #fff;
+  text-align: left;
+  border-radius: 8px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the target */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: ${(props) => (props.isVisible ? 1 : 0)};
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* Arrow on the bottom */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #0d3e69 transparent transparent transparent;
+  }
+`;
+
+const TooltipTitle = styled.h4`
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 700;
+  color: #fff;
+`;
+
+const TooltipTextItem = styled.p`
+  font-size: 0.9rem;
+  margin: 5px 0;
+  color: #fff;
+`;
+
+const geoUrl = "/features.json";
+
+const shadow_custom_world_map = "shadow-md";
+
+const colorScale = scaleLinear()
+  .domain([0.29, 0.68])
+  .range(["#175992", "#e4e7ec"]);
+
+export const WorldMap = () => {
+  const [data, setData] = useState([]);
+  let tooltip = useRef(null);
+
+  useEffect(() => {
+    csv("./vulnerabilities.csv").then((data) => {
+      setData(data);
+    });
+  }, []);
+  const id = useId();
+
   return (
-    <ComposableMap
-      projectionConfig={{
-        rotate: [-20, 0, 0],
-        scale: 210,
-      }}
-    >
-      <Geographies
-        fill="#0d3e69"
-        stroke="#FFFFFF"
-        strokeWidth={0.2}
-        geography={featuresJSON}
+    <>
+      <ComposableMap
+        projectionConfig={{
+          rotate: [-10, 0, 0],
+          scale: 160,
+        }}
       >
-        {({ geographies }) =>
-          geographies.map((geo) => (
-            <Geography
-              style={{
-                default: {
-                  fill: "#0d3e69",
-                  outline: "FFFFFF",
-                },
-                hover: {
-                  fill: "#F60",
-                  outline: "none",
-                },
-                pressed: {
-                  fill: "#E12",
-                  outline: "none",
-                },
-              }}
-              key={geo.rsmKey}
-              geography={geo}
-            />
-          ))
-        }
-      </Geographies>
-      {markers.map(({ name, coordinates, markerOffset }) => (
-        <Marker key={name} coordinates={coordinates}>
-          <svg
-            width="30"
-            height="30"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-              fill="#FF5722"
-            />
-          </svg>
-          {/* <text className={styles.maptext} textAnchor="middle" y={markerOffset}>
-            {name}
-          </text> */}
-        </Marker>
-      ))}
-    </ComposableMap>
+        <Sphere stroke="#E4E5E6" strokeWidth={0.5} />
+        <Graticule stroke="#E4E5E6" strokeWidth={0.5} />
+        {data.length > 0 && (
+          <Geographies geography={geoUrl}>
+            {({ geographies }) =>
+              geographies.map((geo) => {
+                const d = data.find((s) => s.ISO3 === geo.id);
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    data-tooltip-id={id}
+                    className="focus:outline-none"
+                    fill={d ? colorScale(d["2017"]) : "#F5F4F6"}
+                    onMouseEnter={() => {
+                      document.body.classList.add("target");
+                    }}
+                    onMouseLeave={() => {
+                      document.body.classList.remove("target");
+                    }}
+                  />
+                );
+              })
+            }
+          </Geographies>
+        )}
+      </ComposableMap>
+      <Tooltip
+        ref={tooltip}
+        id={id}
+        float
+        className={`!p-0 !rounded-lg !bg-white !text-inherit ${shadow_custom_world_map} select-none z-10`}
+        opacity={1}
+      >
+        <TooltipTitle>🛫 Jetstream International (UK)</TooltipTitle>
+        <TooltipTextItem>🏢 575-599 Maxted Road, Hemel Hempstead, HP27DX</TooltipTextItem>
+        <TooltipTextItem>📞 +44 1442818173</TooltipTextItem>
+      </Tooltip>
+    </>
   );
 };
-
-export default WorldMap;

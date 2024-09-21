@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ContactForm from './Form';
 
 // Styled Components
 const ContactSection = styled.section`
@@ -111,6 +112,8 @@ const ContactUs = () => {
   return (
     <ContactSection>
       <Header>Contact Information</Header>
+      <ContactForm />
+
       <SubHeader>
         Let’s Make Something Awesome Together. Drop us a line or give us a heads-up if you are interested in visiting us.
       </SubHeader>
@@ -133,28 +136,6 @@ const ContactUs = () => {
               </p>
               <p>
                 <Icon>📞</Icon> +971 50 1917583
-              </p>
-            </ContactDetails>
-          </InfoContent>
-        </InfoCard>
-
-        {/* Pakistan Contact */}
-        <InfoCard>
-          <ImageContainer>
-            <img src="/islamabad.webp" alt="Pakistan Office" />
-          </ImageContainer>
-          <InfoContent>
-            <Location>Pakistan</Location>
-            <Address>
-              Jetstream International (Pvt) Limited <br />
-              Suite 24, Jinnah International Airport, Karachi, Pakistan.
-            </Address>
-            <ContactDetails>
-              <p>
-                <Icon>✉</Icon> ops@jsiaviation.com
-              </p>
-              <p>
-                <Icon>📞</Icon> +92 21 34600215
               </p>
             </ContactDetails>
           </InfoContent>

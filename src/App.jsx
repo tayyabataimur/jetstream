@@ -8,6 +8,8 @@ import AircraftCharter from "./components/AircraftCharter";
 import AboutUs from "./components/About";
 import Parts from "./components/Parts";
 import ScrollToTop from "./hooks/scrollToTop";
+import Services from "./components/Core";
+
 const App = () => {
   return (
     <>
@@ -19,6 +21,7 @@ const App = () => {
         <Route path="/aircraftcharter" element={<AircraftCharter />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/parts" element={<Parts />} />
+        <Route path="/core" element={<Services />} />
         <Route path="/404" element={<NotFound />} />
       </Routes>
       <Footer />
