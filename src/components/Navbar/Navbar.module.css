@@ -1,6 +1,6 @@
 .navbar {
     align-items: center;
-    background: #000000e0;
+    background: #f4f4f4d2;
     border-bottom: 0.5px solid white;
     box-sizing: border-box;
     display: flex;
@@ -16,7 +16,7 @@
 }
 
 .navbar.scrolled {
-    background: black;
+    background: #daedfe;
     transition: background-color 0.5s ease-in-out; ;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .links li a {
-    color: #ffffff;
+    color: #000000;
     font-family: "Lato", sans-serif;
     font-size: 0.8rem;
     font-weight: 700;
@@ -43,7 +43,7 @@
 }
 
 .links li a:hover {
-    text-decoration-color: #ffffff;
+    text-decoration-color: #000000;
 }
 
 .menu {

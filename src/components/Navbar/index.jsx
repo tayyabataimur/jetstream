@@ -64,7 +64,7 @@ const Navbar = () => {
     <nav className={cx(styles.navbar, { [styles.scrolled]: scrolled })}>
       {/* Logo */}
       <a href="/">
-        <img className={styles.logo} src="/logo.svg" />
+        <img className={styles.logo} src="/logo.png" />
       </a>
 
       {/* Links */}
