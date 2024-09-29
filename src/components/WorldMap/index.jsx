@@ -7,6 +7,7 @@ import {
   Geography,
   Sphere,
   Graticule,
+  Annotation,
 } from "react-simple-maps";
 import { Tooltip } from "react-tooltip";
 import styled from "styled-components";
@@ -112,6 +113,48 @@ export const WorldMap = () => {
             }
           </Geographies>
         )}
+        <Annotation
+        subject={[-2.3522, 51.8566]}
+        dx={-20}
+        dy={-20}
+        connectorProps={{
+          stroke: "#f0ad4e",
+          strokeWidth: 2,
+          strokeLinecap: "round"
+        }}
+      >
+        <text fontSize="10" x="-8" textAnchor="end" alignmentBaseline="middle" fill="#f0ad4e">
+          {" 🛫 Jetstream HQ"}
+        </text>
+      </Annotation>
+      <Annotation
+        subject={[56.3522, 25.8566]}
+        dx={-44}
+        dy={-20}
+        connectorProps={{
+          stroke: "#f0ad4e",
+          strokeWidth: 2,
+          strokeLinecap: "round"
+        }}
+      >
+        <text fontSize="10" x="-8" textAnchor="end" alignmentBaseline="middle" fill="#f0ad4e">
+          {"Jetstream UAE"}
+        </text>
+      </Annotation>
+      <Annotation
+        subject={[72.3522, 35.8566]}
+        dx={-32}
+        dy={-32}
+        connectorProps={{
+          stroke: "#f0ad4e",
+          strokeWidth: 2,
+          strokeLinecap: "round"
+        }}
+      >
+        <text fontSize="10" x="-5" textAnchor="end" alignmentBaseline="middle" fill="#f0ad4e">
+          {"Jetstream Southeast Asia"}
+        </text>
+      </Annotation>
       </ComposableMap>
       <Tooltip
         ref={tooltip}
