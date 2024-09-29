@@ -1,6 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import ContactForm from './Form';
+import React from "react";
+import styled from "styled-components";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import ContactForm from "./Form";
+import {
+  FaPlaneArrival
+} from "react-icons/fa";
 
 // Styled Components
 const ContactSection = styled.section`
@@ -8,9 +12,35 @@ const ContactSection = styled.section`
   flex-direction: column;
   align-items: center;
   padding: 80px 20px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #fff;
   color: #0d3e69;
+  width: 100%;
+`;
+
+const FormMapContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  gap: 50px;
+
+  @media (max-width: 900px) {
+    flex-direction: column; /* Stack form and map vertically on smaller screens */
+  }
+`;
+
+const FormContainer = styled.div`
+  flex: 1; /* Make sure both form and map take equal space */
+  display: flex;
+  align-items: center; /* Vertically align the form */
+  justify-content: center;
+`;
+
+const MapContainer = styled.div`
+  margin-top: 4rem;
+  flex: 1; /* Make sure both form and map take equal space */
+  height: 400px; /* Set a fixed height for the map */
 `;
 
 const Header = styled.h2`
@@ -107,15 +137,55 @@ const Icon = styled.span`
   color: #0d3e69;
 `;
 
-// Main ContactUs Component
+// Google Maps Settings
+const mapStyles = {
+  width: "100%",
+  height: "100%",
+};
+
+const defaultCenter = {
+  lat: 25.276987, // Default Latitude (Dubai)
+  lng: 55.296249, // Default Longitude (Dubai)
+};
+
 const ContactUs = () => {
   return (
     <ContactSection>
-      <Header>Contact Information</Header>
-      <ContactForm />
+      <Header>
+        <FaPlaneArrival
+          style={{
+            color: "#0d3e69",
+            fontSize: "1.5rem",
+            marginRight: "10px",
+          }}
+        />
+        Let's fly together
+      </Header>
+
+      <FormMapContainer>
+        {/* Contact Form Section */}
+        <FormContainer>
+          <ContactForm />
+        </FormContainer>
+
+        {/* Google Maps Section */}
+        <MapContainer>
+          <LoadScript>
+            <GoogleMap
+              mapContainerStyle={mapStyles}
+              zoom={12}
+              center={defaultCenter}
+            >
+              {/* Marker to show the location */}
+              <Marker position={defaultCenter} />
+            </GoogleMap>
+          </LoadScript>
+        </MapContainer>
+      </FormMapContainer>
 
       <SubHeader>
-        Let’s Make Something Awesome Together. Drop us a line or give us a heads-up if you are interested in visiting us.
+        Let’s Make Something Awesome Together. Drop us a line or give us a
+        heads-up if you are interested in visiting us.
       </SubHeader>
 
       <InfoContainer>
@@ -149,8 +219,8 @@ const ContactUs = () => {
           <InfoContent>
             <Location>United Kingdom</Location>
             <Address>
-              Jetstream International (UK) Limited <br />
-              i Mex House, Unit W-12, 575-599 Maxted Road, Hemel Hempstead, HP27DX.
+              Jetstream International (UK) Limited <br />i Mex House, Unit W-12,
+              575-599 Maxted Road, Hemel Hempstead, HP27DX.
             </Address>
             <ContactDetails>
               <p>

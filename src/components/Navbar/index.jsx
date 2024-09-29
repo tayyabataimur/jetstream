@@ -20,11 +20,11 @@ const Links = ({ classname, handleClick }) => (
         Aircraft parts procurement
       </Link>
     </li>
-    <li>
+    {/* <li>
       <Link onClick={handleClick} to={"/aboutus"}>
         About us
       </Link>
-    </li>
+    </li> */}
     <li>
       <Link onClick={handleClick} to={"/contactus"}>
         Contact
