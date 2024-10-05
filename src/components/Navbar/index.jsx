@@ -69,7 +69,6 @@ const Navbar = () => {
 
       {/* Links */}
       <Links classname={styles.links} handleClick={onLinkClick} />
-
       {/* Menu Icon */}
       <button
         className={cx(styles.menu)}
