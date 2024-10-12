@@ -1,5 +1,5 @@
 import styles from "./GlobalExistence.module.css";
-import cx from "classnames";
+import { useState, useEffect } from "react";
 
 const cities = [
   "London",
@@ -15,38 +15,57 @@ const cities = [
   "Islamabad"
 ];
 
+const images = [
+  { src: "/dubai.webp", alt: "Dubai" },
+  { src: "/abudhabi.jpg", alt: "Abu Dhabi" },
+  { src: "/manama.jpg", alt: "Manama" },
+  { src: "/london.webp", alt: "London" }
+];
+
 const GlobalExistence = () => {
+  const [activeImage, setActiveImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveImage((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
+      <h2 className={styles.heading}>Soaring Across Borders: Our Worldwide Network</h2>
       <p className={styles.description}>
         Founded in 2009, JSI is a global provider of flight operations support
         services with a physical presence in Pakistan, UAE, Bahrain, Oman, and
         the UK.
       </p>
-      <div className={styles.wrapper}>
-        <div className={styles.locations}>
-          <ul className={styles.list}>
-            {cities.map((city) => (
-              <li className={styles.city} key={city}>
-                {city}
-              </li>
-            ))}
-          </ul>
+      
+      <div className={styles.content}>
+        <div className={styles.imageCarousel}>
+          {images.map((image, index) => (
+            <img
+              key={image.alt}
+              src={image.src}
+              alt={image.alt}
+              className={`${styles.carouselImage} ${index === activeImage ? styles.active : ''}`}
+            />
+          ))}
         </div>
-        {/* IMAGES */}
-        <div className={styles.images}>
-          <img src="/dubai.webp" />
-          <img src="/abudhabi.jpg" />
-          <div className={styles.imagesCol}>
-            <img src="/manama.jpg" />
-            <img src="/london.webp" />
-          </div>
+        
+        <div className={styles.citiesGrid}>
+          {cities.map((city) => (
+            <div key={city} className={styles.city}>
+              {city}
+            </div>
+          ))}
         </div>
       </div>
-      <button className={cx("primaryButton", styles.mainButton)}>
-        <a href="/aircraftcharter">Learn more about us</a>
-      </button>
-    </div>
+      
+      <a href="/aircraftcharter" className={styles.ctaButton}>
+        Learn more about us
+      </a>
+    </section>
   );
 };
 

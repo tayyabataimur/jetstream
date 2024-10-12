@@ -182,6 +182,88 @@ const Card = styled.div`
     animation-delay: ${(props) => props.delay || "0.2s"}; // Add delay here
   }
 `;
+// Add these new styled components
+const ParallaxForm = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding-right: 50px;
+`;
+
+const FormTitle = styled.h2`
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+`;
+
+const FormWrapper = styled.form`
+  width: 350px;
+  background-color: rgba(13, 62, 105, 0.9);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+`;
+
+const FormGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+`;
+
+const Label = styled.label`
+  font-size: 0.9rem;
+  color: #ffffff;
+  margin-bottom: 5px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+`;
+
+const Input = styled.input`
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+`;
+
+const SubmitButton = styled.button`
+  width: 100%;
+  background-color: #ffffff;
+  color: #0d3e69;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  margin-top: 10px;
+
+  &:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+`;
 
 // Component
 const AircraftCharters = () => {
@@ -208,7 +290,28 @@ const AircraftCharters = () => {
       {/* Parallax Section */}
       <ParallaxSection>
         {/* <ParallaxContent> */}
-        <ParallaxHeading>Flying private made simple</ParallaxHeading>
+        <ParallaxForm>
+          <FormTitle></FormTitle>
+          <FormWrapper>
+            <FormGroup>
+              <Label htmlFor="departure">Departure</Label>
+              <Input type="text" id="departure" name="departure" placeholder="City or Airport" />
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="destination">Destination</Label>
+              <Input type="text" id="destination" name="destination" placeholder="City or Airport" />
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="date">Date</Label>
+              <Input type="date" id="date" name="date" />
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="passengers">Passengers</Label>
+              <Input type="number" id="passengers" name="passengers" min="1" />
+            </FormGroup>
+            <SubmitButton type="submit">Book Now</SubmitButton>
+          </FormWrapper>
+        </ParallaxForm>
         {/* </ParallaxContent> */}
       </ParallaxSection>
 

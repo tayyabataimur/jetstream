@@ -1,10 +1,7 @@
-import React from "react";
 import styled from "styled-components";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import ContactForm from "./Form";
-import {
-  FaPlaneArrival
-} from "react-icons/fa";
+import { FaPlaneArrival, FaEnvelope, FaPhone } from "react-icons/fa";
 
 // Styled Components
 const ContactSection = styled.section`
@@ -13,109 +10,123 @@ const ContactSection = styled.section`
   align-items: center;
   padding: 80px 20px;
   font-family: "Poppins", sans-serif;
-  background-color: #fff;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   color: #0d3e69;
   width: 100%;
+  margin-top: 80px;
+`;
+
+const ContentWrapper = styled.div`
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Header = styled.h2`
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 700;
+  color: #0d3e69;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
+const SubHeader = styled.p`
+  font-size: 1.3rem;
+  margin-bottom: 50px;
+  color: #555;
+  text-align: center;
+  max-width: 800px;
+  line-height: 1.6;
 `;
 
 const FormMapContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 1200px;
   gap: 50px;
+  margin-bottom: 80px;
 
-  @media (max-width: 900px) {
-    flex-direction: column; /* Stack form and map vertically on smaller screens */
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
 const FormContainer = styled.div`
-  flex: 1; /* Make sure both form and map take equal space */
-  display: flex;
-  align-items: center; /* Vertically align the form */
-  justify-content: center;
+  flex: 1;
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 `;
 
 const MapContainer = styled.div`
-  margin-top: 4rem;
-  flex: 1; /* Make sure both form and map take equal space */
-  height: 400px; /* Set a fixed height for the map */
-`;
-
-const Header = styled.h2`
-  font-size: 3rem;
-  margin-bottom: 20px;
-  text-align: center;
-  font-weight: 700;
-  color: #0d3e69;
-  margin-top: 5rem;
-`;
-
-const SubHeader = styled.p`
-  font-size: 1.2rem;
-  margin-bottom: 50px;
-  color: #555;
-  text-align: center;
-  max-width: 800px;
+  flex: 1;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 `;
 
 const InfoContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 50px;
+  gap: 40px;
   width: 100%;
-  max-width: 1200px;
 `;
 
 const InfoCard = styled.div`
-  background: #daedfe;
-  border-radius: 15px;
+  background: white;
+  border-radius: 20px;
   overflow: hidden;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   }
 `;
 
 const ImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 250px;
+  height: 200px;
   overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(80%);
-    transition: all 0.3s ease-in-out;
+    transition: transform 0.4s ease;
+  }
 
-    &:hover {
-      transform: scale(1.1);
-    }
+  &:hover img {
+    transform: scale(1.1);
   }
 `;
 
 const InfoContent = styled.div`
   padding: 30px;
-  background-color: #fff;
 `;
 
 const Location = styled.h3`
   font-size: 1.8rem;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   color: #0d3e69;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 const Address = styled.p`
   font-size: 1rem;
   color: #555;
   line-height: 1.6;
+  margin-bottom: 20px;
 `;
 
 const ContactDetails = styled.div`
@@ -144,95 +155,115 @@ const mapStyles = {
 };
 
 const defaultCenter = {
-  lat: 25.276987, // Default Latitude (Dubai)
-  lng: 55.296249, // Default Longitude (Dubai)
+  lat: 25.276987,
+  lng: 55.296249,
 };
 
 const ContactUs = () => {
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "",
+  })
+
   return (
     <ContactSection>
-      <Header>
-        <FaPlaneArrival
-          style={{
-            color: "#0d3e69",
-            fontSize: "1.5rem",
-            marginRight: "10px",
-          }}
-        />
-        Let's fly together
-      </Header>
+      <ContentWrapper>
+        <Header>
+          <FaPlaneArrival
+            style={{
+              color: "#0d3e69",
+              fontSize: "3rem",
+              marginRight: "20px",
+              verticalAlign: "middle",
+            }}
+          />
+          Let&apos;s Fly Together
+        </Header>
 
-      <FormMapContainer>
-        {/* Contact Form Section */}
-        <FormContainer>
-          <ContactForm />
-        </FormContainer>
+        <SubHeader>
+          Embark on a journey of excellence with us. Whether you have a question, a proposal, or simply want to connect, we&apos;re here to make your aviation dreams take flight.
+        </SubHeader>
 
-        {/* Google Maps Section */}
-        <MapContainer>
-          <LoadScript>
-            <GoogleMap
-              mapContainerStyle={mapStyles}
-              zoom={12}
-              center={defaultCenter}
-            >
-              {/* Marker to show the location */}
-              <Marker position={defaultCenter} />
-            </GoogleMap>
-          </LoadScript>
-        </MapContainer>
-      </FormMapContainer>
+        <FormMapContainer>
+          <FormContainer>
+            <ContactForm />
+          </FormContainer>
 
-      <SubHeader>
-        Let’s Make Something Awesome Together. Drop us a line or give us a
-        heads-up if you are interested in visiting us.
-      </SubHeader>
+          <MapContainer>
+            {isLoaded ? (
+              <GoogleMap
+                mapContainerStyle={mapStyles}
+                zoom={12}
+                center={defaultCenter}
+                options={{
+                  styles: [
+                    {
+                      featureType: "all",
+                      elementType: "geometry",
+                      stylers: [{ color: "#e8eaed" }]
+                    },
+                    {
+                      featureType: "water",
+                      elementType: "geometry",
+                      stylers: [{ color: "#c3cfe2" }]
+                    },
+                    {
+                      featureType: "poi",
+                      stylers: [{ visibility: "off" }]
+                    }
+                  ]
+                }}
+              >
+                <Marker position={defaultCenter} />
+              </GoogleMap>
+            ) : <div>Loading...</div>}
+          </MapContainer>
+        </FormMapContainer>
 
-      <InfoContainer>
-        {/* UAE Contact */}
-        <InfoCard>
-          <ImageContainer>
-            <img src="/dubai.webp" alt="UAE Office" />
-          </ImageContainer>
-          <InfoContent>
-            <Location>U.A.E</Location>
-            <Address>
-              Jetstream International FZE <br />
-              PO Box 8536, Sharjah Airport International Free Zone, U.A.E
-            </Address>
-            <ContactDetails>
-              <p>
-                <Icon>✉</Icon> uaeops@jsiaviation.com
-              </p>
-              <p>
-                <Icon>📞</Icon> +971 50 1917583
-              </p>
-            </ContactDetails>
-          </InfoContent>
-        </InfoCard>
+        <InfoContainer>
+          <InfoCard>
+            <ImageContainer>
+              <img src="/dubai.webp" alt="UAE Office" />
+            </ImageContainer>
+            <InfoContent>
+              <Location>U.A.E</Location>
+              <Address>
+                Jetstream International FZE <br />
+                PO Box 8536, Sharjah Airport International Free Zone, U.A.E
+              </Address>
+              <ContactDetails>
+                <p>
+                  <Icon><FaEnvelope /></Icon> uaeops@jsiaviation.com
+                </p>
+                <p>
+                  <Icon><FaPhone /></Icon> +971 50 1917583
+                </p>
+              </ContactDetails>
+            </InfoContent>
+          </InfoCard>
 
-        {/* UK Contact */}
-        <InfoCard>
-          <ImageContainer>
-            <img src="/london.webp" alt="UK Office" />
-          </ImageContainer>
-          <InfoContent>
-            <Location>United Kingdom</Location>
-            <Address>
-              Jetstream International (UK) Limited <br />i Mex House, Unit W-12,
-              575-599 Maxted Road, Hemel Hempstead, HP27DX.
-            </Address>
-            <ContactDetails>
-              <p>
-                <Icon>✉</Icon> ops@jsiaviation.co.uk
-              </p>
-              <p>
-                <Icon>📞</Icon> +44 1442818173
-              </p>
-            </ContactDetails>
-          </InfoContent>
-        </InfoCard>
-      </InfoContainer>
+          <InfoCard>
+            <ImageContainer>
+              <img src="/london.webp" alt="UK Office" />
+            </ImageContainer>
+            <InfoContent>
+              <Location>United Kingdom</Location>
+              <Address>
+                Jetstream International (UK) Limited <br />
+                i Mex House, Unit W-12, 575-599 Maxted Road, Hemel Hempstead, HP27DX.
+              </Address>
+              <ContactDetails>
+                <p>
+                  <Icon><FaEnvelope /></Icon> ops@jsiaviation.co.uk
+                </p>
+                <p>
+                  <Icon><FaPhone /></Icon> +44 1442818173
+                </p>
+              </ContactDetails>
+            </InfoContent>
+          </InfoCard>
+        </InfoContainer>
+      </ContentWrapper>
     </ContactSection>
   );
 };
