@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import {
   FaPlane,
@@ -7,12 +7,6 @@ import {
   FaShieldAlt,
   FaClock,
 } from "react-icons/fa";
-
-// Keyframes for Animation
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
 
 const slideInLeft = keyframes`
   from { opacity: 0; transform: translateX(-50px); }
@@ -58,29 +52,6 @@ const ParallaxSection = styled.section`
     background: rgba(0, 0, 0, 0.4);
     z-index: -1;
   }
-`;
-
-const ParallaxContent = styled.div`
-  padding: 60px;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  max-width: 700px;
-  animation: ${fadeIn} 1s ease-in-out;
-`;
-
-const ParallaxHeading = styled.h1`
-  font-size: 4rem;
-  color: #fff;
-  font-weight: 800;
-  letter-spacing: 2px;
-  font-family: "Poppins", sans-serif;
-`;
-
-const ParallaxSubheading = styled.p`
-  font-size: 1.5rem;
-  color: #daedfe;
-  font-family: "Poppins", sans-serif;
 `;
 
 // Main Section for Charter Services

@@ -124,7 +124,7 @@ export const WorldMap = () => {
         }}
       >
         <text fontSize="10" x="-8" textAnchor="end" alignmentBaseline="middle" fill="#f0ad4e">
-          {" 🛫 Jetstream HQ"}
+          {" 🛫 Jetstream London"}
         </text>
       </Annotation>
       <Annotation
@@ -137,7 +137,7 @@ export const WorldMap = () => {
           strokeLinecap: "round"
         }}
       >
-        <text fontSize="10" x="-8" textAnchor="end" alignmentBaseline="middle" fill="#f0ad4e">
+        <text fontSize="10" x="-8" textAnchor="end" alignmentBaseline="middle" fill="#f1ad4e">
           {"Jetstream UAE"}
         </text>
       </Annotation>

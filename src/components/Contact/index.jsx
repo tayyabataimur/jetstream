@@ -14,6 +14,7 @@ const ContactSection = styled.section`
   color: #0d3e69;
   width: 100%;
   margin-top: 80px;
+  box-sizing: border-box;
 `;
 
 const ContentWrapper = styled.div`
@@ -25,21 +26,29 @@ const ContentWrapper = styled.div`
 `;
 
 const Header = styled.h2`
-  font-size: 3.5rem;
+  font-size: 3rem;
   margin-bottom: 20px;
   text-align: center;
   font-weight: 700;
   color: #0d3e69;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const SubHeader = styled.p`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin-bottom: 50px;
   color: #555;
   text-align: center;
   max-width: 800px;
   line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const FormMapContainer = styled.div`
@@ -52,6 +61,7 @@ const FormMapContainer = styled.div`
   @media (max-width: 1200px) {
     flex-direction: column;
     align-items: center;
+    gap: 30px;
   }
 `;
 
@@ -63,6 +73,11 @@ const FormContainer = styled.div`
   padding: 40px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 const MapContainer = styled.div`
@@ -71,6 +86,11 @@ const MapContainer = styled.div`
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+
+  @media (max-width: 768px) {
+    height: 300px;
+  }
 `;
 
 const InfoContainer = styled.div`
@@ -78,6 +98,10 @@ const InfoContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 40px;
   width: 100%;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const InfoCard = styled.div`
@@ -172,8 +196,8 @@ const ContactUs = () => {
           <FaPlaneArrival
             style={{
               color: "#0d3e69",
-              fontSize: "3rem",
-              marginRight: "20px",
+              fontSize: "2.5rem",
+              marginRight: "15px",
               verticalAlign: "middle",
             }}
           />
@@ -192,7 +216,7 @@ const ContactUs = () => {
           <MapContainer>
             {isLoaded ? (
               <GoogleMap
-                mapContainerStyle={mapStyles}
+                mapContainerStyle={{ width: '100%', height: '100%' }}
                 zoom={12}
                 center={defaultCenter}
                 options={{
