@@ -1,105 +1,48 @@
 import styled from "styled-components";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import ContactForm from "./Form";
-import { FaPlaneArrival, FaEnvelope, FaPhone } from "react-icons/fa";
+import { FaPlaneArrival, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 
-// Styled Components
-const ContactSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 80px 20px;
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  color: #0d3e69;
+const MapSection = styled.section`
+  height: 70vh;
   width: 100%;
+  position: relative;
   margin-top: 80px;
-  box-sizing: border-box;
+  background: #f5f7fa;
+`;
+
+const MapOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 62, 105, 0.05) 0%,
+    rgba(13, 62, 105, 0.1) 100%
+  );
+  pointer-events: none;
+`;
+
+const ContactSection = styled.section`
+  position: relative;
+  margin-top: -100px;
+  padding: 0 20px 80px;
+  z-index: 2;
 `;
 
 const ContentWrapper = styled.div`
   max-width: 1400px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 0 auto;
 `;
 
-const Header = styled.h2`
-  font-size: 3rem;
-  margin-bottom: 20px;
-  text-align: center;
-  font-weight: 700;
-  color: #0d3e69;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
-`;
-
-const SubHeader = styled.p`
-  font-size: 1.2rem;
-  margin-bottom: 50px;
-  color: #555;
-  text-align: center;
-  max-width: 800px;
-  line-height: 1.6;
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
-`;
-
-const FormMapContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  gap: 50px;
-  margin-bottom: 80px;
-
-  @media (max-width: 1200px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  }
-`;
-
-const FormContainer = styled.div`
-  flex: 1;
-  max-width: 600px;
-  width: 100%;
-  background: white;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-
-  @media (max-width: 768px) {
-    padding: 20px;
-  }
-`;
-
-const MapContainer = styled.div`
-  flex: 1;
-  height: 500px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  width: 100%;
-
-  @media (max-width: 768px) {
-    height: 300px;
-  }
-`;
-
-const InfoContainer = styled.div`
+const ContactGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-  width: 100%;
-
-  @media (max-width: 768px) {
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+  
+  @media (max-width: 1024px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -107,188 +50,193 @@ const InfoContainer = styled.div`
 const InfoCard = styled.div`
   background: white;
   border-radius: 20px;
-  overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  }
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  height: fit-content;
 `;
 
-const ImageContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
-
-  &:hover img {
-    transform: scale(1.1);
-  }
-`;
-
-const InfoContent = styled.div`
-  padding: 30px;
-`;
-
-const Location = styled.h3`
-  font-size: 1.8rem;
-  margin-bottom: 15px;
+const LocationTitle = styled.h3`
+  font-size: 2rem;
   color: #0d3e69;
-  font-weight: 600;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;
 
 const Address = styled.p`
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #555;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  line-height: 1.8;
+  margin-bottom: 30px;
 `;
 
-const ContactDetails = styled.div`
+const ContactInfo = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 1rem;
-  color: #0d3e69;
+  gap: 15px;
+`;
 
-  p {
-    margin: 5px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+const ContactItem = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  color: #0d3e69;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #1a5b94;
+  }
+
+  svg {
+    font-size: 1.3rem;
   }
 `;
 
-const Icon = styled.span`
-  font-size: 1.2rem;
-  color: #0d3e69;
+const FormCard = styled.div`
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 `;
 
-// Google Maps Settings
-const mapStyles = {
-  width: "100%",
-  height: "100%",
-};
+const FormTitle = styled.h2`
+  font-size: 2.5rem;
+  color: #0d3e69;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+`;
 
 const defaultCenter = {
-  lat: 25.276987,
-  lng: 55.296249,
+  lat: 51.767505,
+  lng: -0.4396331
 };
+
+const mapStyles = [
+  {
+    featureType: "all",
+    elementType: "labels.text.fill",
+    stylers: [{ color: "#0d3e69" }]
+  },
+  {
+    featureType: "water",
+    elementType: "geometry",
+    stylers: [{ color: "#c3cfe2" }]
+  },
+  {
+    featureType: "landscape",
+    elementType: "geometry",
+    stylers: [{ color: "#f5f7fa" }]
+  },
+  {
+    featureType: "road",
+    elementType: "geometry",
+    stylers: [{ color: "#ffffff" }]
+  },
+  {
+    featureType: "poi",
+    elementType: "geometry",
+    stylers: [{ color: "#e8eef4" }]
+  },
+  {
+    featureType: "transit",
+    elementType: "geometry",
+    stylers: [{ color: "#e8eef4" }]
+  }
+];
 
 const ContactUs = () => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "",
-  })
+    googleMapsApiKey: "AIzaSyCfs5lK5HSuElwgXC0fzuBVV3v-nb5GPYc"
+  });
 
   return (
-    <ContactSection>
-      <ContentWrapper>
-        <Header>
-          <FaPlaneArrival
-            style={{
-              color: "#0d3e69",
-              fontSize: "2.5rem",
-              marginRight: "15px",
-              verticalAlign: "middle",
+    <>
+      <MapSection>
+        {isLoaded ? (
+          <GoogleMap
+            mapContainerStyle={{
+              width: '100%',
+              height: '100%'
             }}
-          />
-          Let&apos;s Fly Together
-        </Header>
-
-        <SubHeader>
-          Embark on a journey of excellence with us. Whether you have a question, a proposal, or simply want to connect, we&apos;re here to make your aviation dreams take flight.
-        </SubHeader>
-
-        <FormMapContainer>
-          <FormContainer>
-            <ContactForm />
-          </FormContainer>
-
-          <MapContainer>
-            {isLoaded ? (
-              <GoogleMap
-                mapContainerStyle={{ width: '100%', height: '100%' }}
-                zoom={12}
-                center={defaultCenter}
-                options={{
-                  styles: [
-                    {
-                      featureType: "all",
-                      elementType: "geometry",
-                      stylers: [{ color: "#e8eaed" }]
-                    },
-                    {
-                      featureType: "water",
-                      elementType: "geometry",
-                      stylers: [{ color: "#c3cfe2" }]
-                    },
-                    {
-                      featureType: "poi",
-                      stylers: [{ visibility: "off" }]
-                    }
-                  ]
+            zoom={16}
+            center={defaultCenter}
+            options={{
+              styles: mapStyles,
+              disableDefaultUI: false,
+              zoomControl: true,
+              mapTypeControl: true,
+              scaleControl: true,
+              streetViewControl: true,
+              rotateControl: true,
+              fullscreenControl: true
+            }}
+          >
+            {isLoaded && (
+              <Marker
+                position={defaultCenter}
+                icon={{
+                  path: window.google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+                  fillColor: "#0d3e69",
+                  fillOpacity: 1,
+                  strokeWeight: 2,
+                  strokeColor: "#ffffff",
+                  scale: 8,
+                  rotation: 45,
                 }}
-              >
-                <Marker position={defaultCenter} />
-              </GoogleMap>
-            ) : <div>Loading...</div>}
-          </MapContainer>
-        </FormMapContainer>
+                animation={window.google.maps.Animation.DROP}
+                title="Jetstream International"
+              />
+            )}
+          </GoogleMap>
+        ) : (
+          <div>Loading...</div>
+        )}
+        <MapOverlay />
+      </MapSection>
 
-        <InfoContainer>
-          <InfoCard>
-            <ImageContainer>
-              <img src="/dubai.webp" alt="UAE Office" />
-            </ImageContainer>
-            <InfoContent>
-              <Location>U.A.E</Location>
+      <ContactSection>
+        <ContentWrapper>
+          <ContactGrid>
+            <InfoCard>
+              <LocationTitle>
+                <FaMapMarkerAlt />
+                Our Location
+              </LocationTitle>
               <Address>
-                Jetstream International FZE <br />
-                PO Box 8536, Sharjah Airport International Free Zone, U.A.E
+                Jetstream International (UK) Limited<br />
+                i Mex House, Unit W-12,<br />
+                575-599 Maxted Road,<br />
+                Hemel Hempstead, HP27DX
               </Address>
-              <ContactDetails>
-                <p>
-                  <Icon><FaEnvelope /></Icon> uaeops@jsiaviation.com
-                </p>
-                <p>
-                  <Icon><FaPhone /></Icon> +971 50 1917583
-                </p>
-              </ContactDetails>
-            </InfoContent>
-          </InfoCard>
+              <ContactInfo>
+                <ContactItem href="mailto:ops@jsiaviation.co.uk">
+                  <FaEnvelope />
+                  ops@jsiaviation.co.uk
+                </ContactItem>
+                <ContactItem href="tel:+441442818173">
+                  <FaPhone />
+                  +44 1442818173
+                </ContactItem>
+              </ContactInfo>
+            </InfoCard>
 
-          <InfoCard>
-            <ImageContainer>
-              <img src="/london.webp" alt="UK Office" />
-            </ImageContainer>
-            <InfoContent>
-              <Location>United Kingdom</Location>
-              <Address>
-                Jetstream International (UK) Limited <br />
-                i Mex House, Unit W-12, 575-599 Maxted Road, Hemel Hempstead, HP27DX.
-              </Address>
-              <ContactDetails>
-                <p>
-                  <Icon><FaEnvelope /></Icon> ops@jsiaviation.co.uk
-                </p>
-                <p>
-                  <Icon><FaPhone /></Icon> +44 1442818173
-                </p>
-              </ContactDetails>
-            </InfoContent>
-          </InfoCard>
-        </InfoContainer>
-      </ContentWrapper>
-    </ContactSection>
+            <FormCard>
+              <FormTitle>
+                <FaPlaneArrival />
+                Get in Touch
+              </FormTitle>
+              <ContactForm />
+            </FormCard>
+          </ContactGrid>
+        </ContentWrapper>
+      </ContactSection>
+    </>
   );
 };
 
