@@ -183,7 +183,7 @@ const PrivateCharterForm = () => {
   return (
     <FormContainer>
       <FormInner>
-        <FormTitle>Private Charter Request</FormTitle>
+        <FormTitle>Book a Private Charter Now</FormTitle>
         <Form onSubmit={handleSubmit}>
           <InputGroup>
             <Label><Icon><FaMapMarkerAlt /></Icon>Departure</Label>
