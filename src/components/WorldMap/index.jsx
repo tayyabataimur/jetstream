@@ -114,47 +114,166 @@ export const WorldMap = () => {
           </Geographies>
         )}
         <Annotation
-        subject={[-2.3522, 51.8566]}
-        dx={-20}
-        dy={-20}
-        connectorProps={{
-          stroke: "#f0ad4e",
-          strokeWidth: 2,
-          strokeLinecap: "round"
-        }}
-      >
-        <text fontSize="10" x="-8" textAnchor="end" alignmentBaseline="middle" fill="#f0ad4e">
-          {" 🛫 Jetstream London"}
-        </text>
-      </Annotation>
-      <Annotation
-        subject={[56.3522, 25.8566]}
-        dx={-44}
-        dy={-20}
-        connectorProps={{
-          stroke: "#f0ad4e",
-          strokeWidth: 2,
-          strokeLinecap: "round"
-        }}
-      >
-        <text fontSize="10" x="-8" textAnchor="end" alignmentBaseline="middle" fill="#f1ad4e">
-          {"Jetstream UAE"}
-        </text>
-      </Annotation>
-      <Annotation
-        subject={[72.3522, 35.8566]}
-        dx={-32}
-        dy={-32}
-        connectorProps={{
-          stroke: "#f0ad4e",
-          strokeWidth: 2,
-          strokeLinecap: "round"
-        }}
-      >
-        <text fontSize="10" x="-5" textAnchor="end" alignmentBaseline="middle" fill="#f0ad4e">
-          {"Jetstream Southeast Asia"}
-        </text>
-      </Annotation>
+          subject={[-2.3522, 51.8566]}
+          dx={0}
+          dy={0}
+        >
+          <circle
+            r={6}
+            fill="#4a90e2"
+            opacity={0.8}
+            stroke="#fff"
+            strokeWidth={2}
+          >
+            <animate
+              attributeName="opacity"
+              values="0.8;0.4;0.8"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="r"
+              values="6;8;6"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </Annotation>
+        <Annotation
+          subject={[56.3522, 25.8566]}
+          dx={0}
+          dy={0}
+        >
+          <circle
+            r={6}
+            fill="#4a90e2"
+            opacity={0.8}
+            stroke="#fff"
+            strokeWidth={2}
+          >
+            <animate
+              attributeName="opacity"
+              values="0.8;0.4;0.8"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="r"
+              values="6;8;6"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </Annotation>
+        <Annotation
+          subject={[72.3522, 35.8566]}
+          dx={0}
+          dy={0}
+        >
+          <circle
+            r={6}
+            fill="#4a90e2"
+            opacity={0.8}
+            stroke="#fff"
+            strokeWidth={2}
+          >
+            <animate
+              attributeName="opacity"
+              values="0.8;0.4;0.8"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="r"
+              values="6;8;6"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </Annotation>
+
+        <Annotation
+          subject={[22.3522, 35.8566]}
+          dx={0}
+          dy={0}
+        >
+          <circle
+            r={6}
+            fill="#4a90e2"
+            opacity={0.8}
+            stroke="#fff"
+            strokeWidth={2}
+          >
+            <animate
+              attributeName="opacity"
+              values="0.8;0.4;0.8"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="r"
+              values="6;8;6"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </Annotation>
+
+
+        <Annotation
+          subject={[52.3522, 35.8566]}
+          dx={0}
+          dy={0}
+        >
+          <circle
+            r={6}
+            fill="#4a90e2"
+            opacity={0.8}
+            stroke="#fff"
+            strokeWidth={2}
+          >
+            <animate
+              attributeName="opacity"
+              values="0.8;0.4;0.8"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="r"
+              values="6;8;6"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </Annotation>
+
+
+        <Annotation
+          subject={[-82.3522, 35.8566]}
+          dx={0}
+          dy={0}
+        >
+          <circle
+            r={6}
+            fill="#4a90e2"
+            opacity={0.8}
+            stroke="#fff"
+            strokeWidth={2}
+          >
+            <animate
+              attributeName="opacity"
+              values="0.8;0.4;0.8"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="r"
+              values="6;8;6"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </Annotation>
       </ComposableMap>
       <Tooltip
         ref={tooltip}

@@ -150,7 +150,8 @@ const PrivateCharterForm = () => {
       aircraft: formData.aircraft,
       email: formData.email,
       phone: formData.phone,
-      to_email: 'ops@jsiaviation.com'
+      to_email: 'ops@jsiaviation.com',
+      reply_to: formData.email
     };
 
     try {
