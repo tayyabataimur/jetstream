@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@react-google-maps/api": "^2.19.3",
     "classnames": "^2.5.1",
     "d3-fetch": "^3.0.1",

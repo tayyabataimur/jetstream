@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { FaPlane, FaCalendarAlt, FaUsers, FaMapMarkerAlt } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 
 const FormContainer = styled.div`
   width: 100%;
@@ -102,6 +103,16 @@ const SubmitButton = styled.button`
   }
 `;
 
+const StatusMessage = styled.div`
+  grid-column: 1 / -1;
+  padding: 15px;
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 8px;
+  background-color: ${props => props.success ? '#d4edda' : '#f8d7da'};
+  color: ${props => props.success ? '#155724' : '#721c24'};
+`;
+
 const PrivateCharterForm = () => {
   const [formData, setFormData] = useState({
     departure: '',
@@ -109,7 +120,12 @@ const PrivateCharterForm = () => {
     date: '',
     passengers: '',
     aircraft: '',
+    email: '',
+    phone: ''
   });
+
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -119,16 +135,54 @@ const PrivateCharterForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
+    setLoading(true);
+    setStatus('');
+
+    const templateParams = {
+      from_name: 'Website Charter Request',
+      to_name: 'JSI Aviation',
+      departure: formData.departure,
+      destination: formData.destination,
+      date: formData.date,
+      passengers: formData.passengers,
+      aircraft: formData.aircraft,
+      email: formData.email,
+      phone: formData.phone,
+      to_email: 'ops@jsiaviation.com'
+    };
+
+    try {
+      await emailjs.send(
+        'service_mktmsjy',
+        'template_k2odggi',
+        templateParams,
+        '2hiprBLSnsGWY6Sa3'
+      );
+
+      setStatus('success');
+      setFormData({
+        departure: '',
+        destination: '',
+        date: '',
+        passengers: '',
+        aircraft: '',
+        email: '',
+        phone: ''
+      });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setStatus('error');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <FormContainer>
       <FormInner>
-        <FormTitle></FormTitle>
+        <FormTitle>Private Charter Request</FormTitle>
         <Form onSubmit={handleSubmit}>
           <InputGroup>
             <Label><Icon><FaMapMarkerAlt /></Icon>Departure</Label>
@@ -188,7 +242,43 @@ const PrivateCharterForm = () => {
               <option value="turboprop">Turboprop</option>
             </Select>
           </InputGroup>
-          <SubmitButton type="submit">Request Charter</SubmitButton>
+          <InputGroup>
+            <Label><Icon><FaUsers /></Icon>Contact Email</Label>
+            <Input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Your Email Address"
+              required
+            />
+          </InputGroup>
+          <InputGroup>
+            <Label><Icon><FaUsers /></Icon>Phone Number</Label>
+            <Input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="Your Phone Number"
+              required
+            />
+          </InputGroup>
+          <SubmitButton type="submit" disabled={loading}>
+            {loading ? 'Sending...' : 'Request Charter'}
+          </SubmitButton>
+          
+          {status === 'success' && (
+            <StatusMessage success>
+              Thank you! Your charter request has been sent successfully.
+            </StatusMessage>
+          )}
+          
+          {status === 'error' && (
+            <StatusMessage>
+              Sorry, there was an error sending your request. Please try again.
+            </StatusMessage>
+          )}
         </Form>
       </FormInner>
     </FormContainer>
