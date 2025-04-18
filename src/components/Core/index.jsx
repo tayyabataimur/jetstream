@@ -39,7 +39,7 @@ const data = [
 // Parallax Section Styled Component
 const ParallaxSection = styled.section`
   height: 500px;
-  background-image: url('https://www.luxaviation.com/wp-content/uploads/2020/02/jets-charter-our_fleet-1.jpg');
+  background-image: url('https://asa-aircharter.com/wp-content/uploads/2016/02/ASA_aircharter.jpg');
   background-attachment: fixed;
   filter: blur(0.8);
   background-position: center;
