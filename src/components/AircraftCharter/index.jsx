@@ -27,7 +27,7 @@ const slideInRight = keyframes`
 // Parallax Section
 const ParallaxSection = styled.section`
   height: 100vh;
-  background-image: url("https://sardiniansky.aero/wp-content/uploads/2024/03/charter-flights.jpg");
+  background-image: url("https://www.luxaviation.com/wp-content/uploads/2023/03/How-to-Charter-a-Private-Jet-A-Complete-Guide_Visual-Seven.jpg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
