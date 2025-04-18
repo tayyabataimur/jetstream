@@ -41,15 +41,25 @@ const ParallaxSection = styled.section`
   height: 500px;
   background-image: url('/services3.jpeg');
   background-attachment: fixed;
-  filter: blur(0.8)
+  filter: blur(0.8);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain; /* Default to contain */
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: white;
+
+  /* Tablet and larger screens */
+  @media (min-width: 768px) {
+    background-size: cover; /* Switch to cover for larger screens */
+  }
+
+  /* Optionally, even larger desktops */
+  @media (min-width: 1200px) {
+    /* You could adjust background-position or other properties further */
+  }
 `;
 
 const ParallaxContent = styled.div`
