@@ -1,203 +1,250 @@
-import React from 'react';
-import styled from 'styled-components';
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
-// Styled Components for Parallax Background
-const ParallaxSection = styled.section`
-  height: 500px;
-  background-image: url('https://aircharterservice-globalcontent-live.cphostaccess.com/images/migration/Footer-final_tcm36-51242.jpg'); /* Replace with your image */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+const Page = styled.div`
+  background: #fff;
+`;
+
+const Hero = styled.section`
+  height: 60vh;
+  min-height: 500px;
+  background: #0d3e5c;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-family: 'Poppins', sans-serif;
   text-align: center;
+  padding: 0 2rem;
 `;
 
-const ParallaxContent = styled.div`
-  background: rgba(0, 62, 105, 0.7); /* Dark overlay for contrast */
-  padding: 40px;
-  border-radius: 10px;
-  max-width: 800px;
+const HeroLabel = styled.p`
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.5rem;
 `;
 
-const ParallaxHeading = styled.h1`
-  font-size: 3.5rem;
-  margin-bottom: 20px;
+const HeroTitle = styled(motion.h1)`
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 600;
   color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
 `;
 
-const ParallaxSubheading = styled.p`
-  font-size: 1.5rem;
-  color: #daedfe;
+const HeroDesc = styled(motion.p)`
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-weight: 300;
 `;
 
-// Main About Us Section
-const AboutSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 80px 20px;
-  font-family: 'Poppins', sans-serif;
-  background-color: #fff;
-  color: #0d3e69;
+const Section = styled.section`
+  padding: 120px 2rem;
+  background: ${(props) => props.$bg || "#fff"};
 `;
 
-const Header = styled.h2`
-  font-size: 3rem;
-  margin-bottom: 20px;
-  text-align: center;
-  font-weight: 700;
-  color: #0d3e69;
+const Inner = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
 `;
 
-const SubHeader = styled.p`
-  font-size: 1.2rem;
-  margin-bottom: 50px;
-  color: #555;
-  text-align: center;
-  max-width: 800px;
+const Label = styled.p`
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 1rem;
 `;
 
-// Meet the Team Section
-const TeamSection = styled.section`
-  background-color: #daedfe;
-  padding: 80px 20px;
-  text-align: center;
+const Title = styled(motion.h2)`
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: #0d3e5c;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
 `;
 
-const TeamHeader = styled.h3`
-  font-size: 2.5rem;
-  color: #0d3e69;
-  font-weight: 700;
-  margin-bottom: 40px;
+const Text = styled(motion.p)`
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
 `;
 
 const TeamGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-`;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: #eee;
+  margin-top: 60px;
 
-const TeamMember = styled.div`
-  background-color: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
   }
 `;
 
-const TeamImage = styled.div`
-  height: 300px;
-  background-color: #daedfe;
-  overflow: hidden;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.3s ease-in-out;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
+const TeamCard = styled(motion.div)`
+  background: #fff;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
 `;
 
-const TeamInfo = styled.div`
-  padding: 20px;
-`;
-
-const TeamName = styled.h4`
-  font-size: 1.5rem;
-  color: #0d3e69;
-  font-weight: 500;
+const TeamName = styled.h3`
+  font-family: "Playfair Display", serif;
+  font-size: 1.1rem;
+  color: #0d3e5c;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
 `;
 
 const TeamRole = styled.p`
-  font-size: 1rem;
-  color: #555;
-  margin: 10px 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  color: #999;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 `;
 
-// About Us Page Component
+const CTAButton = styled(Link)`
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #0d3e5c;
+  padding: 1rem 2.5rem;
+  display: inline-block;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #0a6e7f;
+    color: #fff;
+  }
+`;
+
+const team = [
+  { name: "Shoaib Iqbal", role: "CEO" },
+  { name: "Shehryar", role: "Operations" },
+  { name: "Mike Johnson", role: "Engineering" },
+  { name: "Sarah Lee", role: "Client Services" },
+];
+
 const AboutUs = () => {
   return (
-    <>
-      {/* Parallax Section */}
-      <ParallaxSection>
-      </ParallaxSection>
+    <Page>
+      <Hero>
+        <div>
+          <HeroLabel>About Us</HeroLabel>
+          <HeroTitle
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Our Story
+          </HeroTitle>
+          <HeroDesc
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Over 15 years of delivering premium aviation services across the globe.
+          </HeroDesc>
+        </div>
+      </Hero>
 
-      {/* About Us Section */}
-      <AboutSection>
-        <Header>About Us</Header>
-        <SubHeader>
-          At Jetstream International, we believe that our people are our most valuable asset. Our experienced team is dedicated to delivering outstanding service, pushing the boundaries of excellence in the aviation industry, and ensuring that our clients get the best service possible. 
-        </SubHeader>
-      </AboutSection>
+      <Section>
+        <Inner>
+          <Label>Who We Are</Label>
+          <Title
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            Jetstream Aviation
+          </Title>
+          <Text
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            Founded in 2009, Jetstream International is a global provider of
+            flight operations support services. With a physical presence in
+            Pakistan, UAE, Bahrain, Oman, and the UK, we provide comprehensive
+            aviation services tailored for private, diplomatic, and commercial
+            aircraft owners and operators.
+          </Text>
+          <Text
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Our mission is to deliver excellence in every aspect of aviation
+            management, from ground handling and flight permits to aircraft
+            refueling and flight planning. We combine global expertise with
+            local knowledge to ensure seamless operations worldwide.
+          </Text>
+        </Inner>
+      </Section>
 
-      {/* Meet the Team Section */}
-      <TeamSection>
-        <TeamHeader>Meet Our Team</TeamHeader>
+      <Section $bg="#fafafa">
+        <Inner>
+          <Label style={{ textAlign: "center" }}>Our Team</Label>
+          <Title
+            style={{ textAlign: "center" }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            Leadership
+          </Title>
+          <TeamGrid>
+            {team.map((member, i) => (
+              <TeamCard
+                key={member.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <TeamName>{member.name}</TeamName>
+                <TeamRole>{member.role}</TeamRole>
+              </TeamCard>
+            ))}
+          </TeamGrid>
+        </Inner>
+      </Section>
 
-        <TeamGrid>
-          {/* Team Member 1 */}
-          <TeamMember>
-            <TeamImage>
-              <img src="/shoaib.png" alt="Team Member 1" />
-            </TeamImage>
-            <TeamInfo>
-              <TeamName>Shoaib Iqbal</TeamName>
-              <TeamRole>Founder & Director</TeamRole>
-            </TeamInfo>
-          </TeamMember>
-
-          {/* Team Member 2 */}
-          <TeamMember>
-            <TeamImage>
-              <img src="https://via.placeholder.com/400x300" alt="Team Member 2" />
-            </TeamImage>
-            <TeamInfo>
-              <TeamName>Shehryar</TeamName>
-              <TeamRole>Operations Manager</TeamRole>
-            </TeamInfo>
-          </TeamMember>
-
-          {/* Team Member 3 */}
-          <TeamMember>
-            <TeamImage>
-              <img src="https://via.placeholder.com/400x300" alt="Team Member 3" />
-            </TeamImage>
-            <TeamInfo>
-              <TeamName>Mike Johnson</TeamName>
-              <TeamRole>Director of Sales</TeamRole>
-            </TeamInfo>
-          </TeamMember>
-
-          {/* Team Member 4 */}
-          <TeamMember>
-            <TeamImage>
-              <img src="https://via.placeholder.com/400x300" alt="Team Member 4" />
-            </TeamImage>
-            <TeamInfo>
-              <TeamName>Sarah Lee</TeamName>
-              <TeamRole>Marketing Manager</TeamRole>
-            </TeamInfo>
-          </TeamMember>
-        </TeamGrid>
-      </TeamSection>
-    </>
+      <Section style={{ textAlign: "center" }}>
+        <Inner>
+          <Label style={{ textAlign: "center" }}>Get Started</Label>
+          <Title
+            style={{ textAlign: "center" }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            Work With Us
+          </Title>
+          <CTAButton to="/contactus">Get in Touch</CTAButton>
+        </Inner>
+      </Section>
+    </Page>
   );
 };
 

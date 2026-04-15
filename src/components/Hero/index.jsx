@@ -1,40 +1,70 @@
 import styles from "./Hero.module.css";
-import useMobileSize from "../../hooks/useMobileSize";
+import { motion } from "framer-motion";
 
 const Hero = () => {
-  const isMobile = useMobileSize();
-
   return (
     <header className={styles.hero}>
-      <div className={styles.heroCard}>
-        <h1 className={styles.heading}>
-          Personalized Flights.
-          <br />
-        </h1>
-        <h1 className={styles.heading}>Elevated Experience.</h1>
-        <p className={styles.description}>
-          With over 15 years of expertise, Jetstream offers premium,
-          personalized aircraft management services tailored for private,
-          diplomatic, and commercial aircraft owners and operators.
-        </p>
-        <button className="primaryButton">
-          <a className={styles.bookingLink} href="/contactus">
-            Book a consultation
-          </a>
-        </button>
-      </div>
-      <img className={styles.heroImg} src="/hero.webp" />
       <video
-        className={styles.video}
+        className={styles.bgMedia}
         autoPlay
         loop
         muted
+        playsInline
+        poster="/hero.webp"
         src="/jsi.mp4"
-        width="100%"
+      />
+      <div className={styles.overlay} />
+      <div className={styles.content}>
+        <motion.p
+          className={styles.tagline}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Private Aviation Excellence
+        </motion.p>
+        <motion.h1
+          className={styles.heading}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          Personalized Flights.
+          <br />
+          Elevated Experience.
+        </motion.h1>
+        <motion.p
+          className={styles.description}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          With over 15 years of expertise, Jetstream offers premium,
+          personalized aircraft management services tailored for private,
+          diplomatic, and commercial aircraft owners and operators.
+        </motion.p>
+        <motion.div
+          className={styles.actions}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          <a className={styles.primaryBtn} href="/contactus">
+            Discover
+          </a>
+          <a className={styles.secondaryBtn} href="/aircraftcharter">
+            Fly Private
+          </a>
+        </motion.div>
+      </div>
+      <motion.div
+        className={styles.scrollIndicator}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
       >
-        Sorry, your browser doesn't support embedded videos, but don't worry,
-        you can
-      </video>
+        <div className={styles.scrollLine} />
+      </motion.div>
     </header>
   );
 };

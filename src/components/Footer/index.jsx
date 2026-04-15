@@ -1,50 +1,75 @@
+import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
-import { useState, useEffect } from "react";
 
 const Footer = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
   return (
-    <div className={`${styles.footer} ${isMobile ? styles.footerMobile : ""}`}>
-      <p className={styles.copyright}>© 2024 Jetstream Aviation. All rights reserved</p>
+    <footer className={styles.footer}>
+      <div className={styles.footerInner}>
+        <div className={styles.footerTop}>
+          <div className={styles.brandCol}>
+            <img className={styles.footerLogo} src="/logo.png" alt="Jetstream" />
+            <p className={styles.brandDesc}>
+              Premium aircraft management services tailored for private,
+              diplomatic, and commercial operators worldwide.
+            </p>
+            <div className={styles.socialMedia}>
+              <a
+                href="https://www.facebook.com/profile.php?id=100083206071335"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <img src="/facebook.svg" alt="Facebook" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/jetstream-internatonal-11045660/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <img src="/linkedin.svg" alt="LinkedIn" />
+              </a>
+            </div>
+          </div>
 
-      <div className={styles.socialMedia}>
-        <a
-          className={styles.socialLink}
-          href="https://www.facebook.com/profile.php?id=100083206071335"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="/facebook.svg" alt="Facebook" />
-        </a>
-        <a
-          className={styles.socialLink}
-          href="https://www.linkedin.com/in/jetstream-internatonal-11045660/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="/linkedin.svg" alt="LinkedIn" />
-        </a>
-      </div>
-      <div className={styles.proudlyAssociated}>
-        <p>Proudly associated with:</p>
-        <div className={`${styles.logoContainer} ${isMobile ? styles.logoContainerMobile : ""}`}>
-          <img src="/nba.webp" alt="Company 1" className={styles.associatedLogo} />
-          <img src="/aca2.png" alt="Company 2" className={styles.associatedLogo} />
+          <div className={styles.linksCol}>
+            <h4 className={styles.colTitle}>Services</h4>
+            <Link to="/core">Ground Handling</Link>
+            <Link to="/core">Flight Permits</Link>
+            <Link to="/core">Aircraft Refueling</Link>
+            <Link to="/core">Flight Planning</Link>
+          </div>
+
+          <div className={styles.linksCol}>
+            <h4 className={styles.colTitle}>Company</h4>
+            <Link to="/aircraftcharter">Fly Private</Link>
+            <Link to="/parts">Aircraft Parts</Link>
+            <Link to="/contactus">Contact Us</Link>
+          </div>
+
+          <div className={styles.linksCol}>
+            <h4 className={styles.colTitle}>Locations</h4>
+            <span>United Kingdom</span>
+            <span>United Arab Emirates</span>
+            <span>Pakistan</span>
+            <span>Bahrain &amp; Oman</span>
+          </div>
+        </div>
+
+        <div className={styles.footerBottom}>
+          <div className={styles.associated}>
+            <span className={styles.assocLabel}>Associated with</span>
+            <div className={styles.assocLogos}>
+              <img src="/nba.webp" alt="NBA" />
+              <img src="/aca.png" alt="ACA" />
+            </div>
+          </div>
+          <p className={styles.copyright}>
+            &copy; {new Date().getFullYear()} Jetstream Aviation. All rights reserved.
+          </p>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

@@ -1,140 +1,28 @@
 html {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
+
 *,
 *:before,
 *:after {
   box-sizing: inherit;
 }
 
-.poppins-thin {
-  font-family: "Poppins", sans-serif;
-  font-weight: 100;
-  font-style: normal;
-}
-
-.poppins-extralight {
-  font-family: "Poppins", sans-serif;
-  font-weight: 200;
-  font-style: normal;
-}
-
-.poppins-light {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-.poppins-regular {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.poppins-medium {
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.poppins-semibold {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-}
-
-.poppins-bold {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.poppins-extrabold {
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
-  font-style: normal;
-}
-
-.poppins-black {
-  font-family: "Poppins", sans-serif;
-  font-weight: 900;
-  font-style: normal;
-}
-
-.poppins-thin-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 100;
-  font-style: italic;
-}
-
-.poppins-extralight-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 200;
-  font-style: italic;
-}
-
-.poppins-light-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-style: italic;
-}
-
-.poppins-regular-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.poppins-medium-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-style: italic;
-}
-
-.poppins-semibold-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-style: italic;
-}
-
-.poppins-bold-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.poppins-extrabold-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
-  font-style: italic;
-}
-
-.poppins-black-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 900;
-  font-style: italic;
-}
-
-
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  color: #0d3e5c;
+  background: #ffffff;
 }
 
 html,
 body {
   height: 100%;
   margin: 0;
-  line-height: 1.5;
-  color: #121212;
+  line-height: 1.6;
 }
 
 textarea,
@@ -143,7 +31,7 @@ button {
   font-size: 1rem;
   font-family: inherit;
   border: none;
-  border-radius: 8px;
+  border-radius: 0;
   padding: 0.5rem 0.75rem;
   background-color: white;
   line-height: 1.5;
@@ -151,68 +39,50 @@ button {
 }
 
 button {
-  color: #3992ff;
+  color: #0d3e5c;
   cursor: pointer;
   font-weight: 500;
 }
 
-.primaryButton {
-  display: flex;
-  flex-direction: row;
-  font-size: 1rem;
-  align-items: center;
-  border-radius: 20px;
-  background: #175992;
-  color: #fff;
-  text-align: center;
-  gap: 0.5rem;
-  padding: 0.75rem 2rem;
-}
-
-textarea:hover,
-input:hover {
-  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
-}
-
-button {
-  font-family: 'Poppins';
-}
-
 h1 {
   margin: 0;
-  font-family: 'Poppins';
+  font-family: "Playfair Display", serif;
   font-weight: 600;
-}
-
-h2, p, li {
-  font-family: 'Poppins';
-  font-weight: 400;
-  margin: 0;
+  letter-spacing: -0.02em;
 }
 
 h2 {
-  color: #0d3e69;
-  font-size: 2.5rem;
+  font-family: "Playfair Display", serif;
   font-weight: 600;
+  margin: 0;
+  color: #0d3e5c;
+  font-size: 2.5rem;
+  letter-spacing: -0.02em;
 }
 
 h3 {
   margin: 0;
-  font-family: 'Poppins';
+  font-family: "Inter", sans-serif;
   font-weight: 500;
 }
 
-p, li {
-  color: #344054;
+p,
+li {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  margin: 0;
+  color: #555;
+  line-height: 1.7;
 }
 
 a,
-a:visited {
-  color: #fff;
+a:visited,
+a:link,
+a:active {
   text-decoration: none;
-  text-decoration-color: #fff;
 }
 
-a:hover {
-  text-decoration: underline;
+::selection {
+  background: #0d3e5c;
+  color: #fff;
 }

@@ -1,67 +1,154 @@
 .footer {
-    align-items: center;
-    background: #000;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding: 1rem 2rem;
-    width: 100%;
+  background: #0d3e5c;
+  color: #fff;
+  padding: 80px 2rem 40px;
 }
 
-.footer p {
-    color: #aeaeae;
-    font-size: 0.75rem;
+.footerInner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footerTop {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin-bottom: 60px;
+}
+
+.brandCol {
+  max-width: 300px;
+}
+
+.footerLogo {
+  height: 1.75rem;
+  filter: brightness(0) invert(1);
+  margin-bottom: 1.25rem;
+}
+
+.brandDesc {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
 }
 
 .socialMedia {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
+  display: flex;
+  gap: 1rem;
 }
 
-.socialLink img {
-    height: 24px;
-    width: 24px;
+.socialMedia a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
 }
 
-.socialMedia .socialLink:hover img {
-    filter: brightness(0) invert(1); /* This inverts the color of the SVG */
+.socialMedia a:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.socialMedia a img {
+  height: 16px;
+  width: 16px;
+  filter: brightness(0) invert(1);
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.socialMedia a:hover img {
+  opacity: 1;
+}
+
+.linksCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.colTitle {
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0 0 0.5rem;
+}
+
+.linksCol a,
+.linksCol span {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.linksCol a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footerBottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.associated {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.assocLabel {
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.assocLogos {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.assocLogos img {
+  height: 24px;
+  filter: brightness(0) invert(1);
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.assocLogos img:hover {
+  opacity: 0.7;
+}
+
+.copyright {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footerTop {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 2rem;
   }
 
-.proudlyAssociated {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 1rem;
-}
-
-.proudlyAssociated p {
-    color: #aeaeae;
-    font-size: 0.75rem;
-    margin-bottom: 0.5rem;
-}
-
-.logoContainer {
-    display: flex;
+  .footerBottom {
     flex-direction: row;
-    flex-wrap: wrap; /* Allow logos to wrap to the next line on smaller screens */
-    gap: 1rem; /* Adjusted spacing for better mobile compatibility */
-    justify-content: center; /* Center logos on smaller screens */
-}
-
-.associatedLogo {
-    height: 30px; /* Adjusted height for better mobile compatibility */
-    width: auto;
-    transition: transform 0.3s ease-in-out; /* Smooth transition for hover effect */
-}
-
-.associatedLogo:hover {
-    transform: scale(1.1); /* Slight zoom-in effect on hover for elegance */
-}
-
-@media (max-width: 600px) {
-    .associatedLogo {
-        height: 25px; /* Further adjust height for smaller screens */
-    }
+    justify-content: space-between;
+  }
 }

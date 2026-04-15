@@ -1,607 +1,394 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { FaPlane, FaFileAlt, FaGasPump, FaRoute, FaArrowRight } from "react-icons/fa";
 
-// Data for Services
-const data = [
+const servicesData = [
   {
-    icon: <FaPlane />,
     title: "Ground Handling",
-    subtitle: "Comprehensive ground support services",
-    description: `JSI provides quality handling to all types of fleet from wheels down to wheels up. Our extensive global network of top-notch partners can help to ensure your ground support match your needs and expectations.`,
-    image: "/service-1.webp"
+    description:
+      "JSI provides quality handling to all types of fleet from wheels down to wheels up. Our extensive global network of top-notch partners ensures your ground support matches your needs.",
+    image: "/service-1.webp",
   },
   {
-    icon: <FaFileAlt />,
     title: "Flight Permits",
-    subtitle: "Global regulatory compliance",
-    description: `Being physically present in Pakistan, GCC, and Europe, JSI can secure necessary approvals in the shortest possible time. Our qualified and experienced team is available 24/7 to answer all your questions.`,
-    image: "/service-2.svg"
+    description:
+      "Being physically present in Pakistan, GCC, and Europe, JSI can secure necessary approvals in the shortest possible time. Our qualified team is available 24/7.",
+    image: "/service-2.svg",
   },
   {
-    icon: <FaGasPump />,
     title: "Aircraft Refueling",
-    subtitle: "Worldwide fuel services",
-    description: `JSI partners with the best fuel service providers and major petroleum companies from around the world. We bring you Jet A1 fuel at over 1,600 contracted locations at competitive rates.`,
-    image: "/service-3.svg"
+    description:
+      "JSI partners with the best fuel service providers and major petroleum companies worldwide. We bring you Jet A1 fuel at over 1,600 contracted locations.",
+    image: "/service-3.svg",
   },
   {
-    icon: <FaRoute />,
-    title: "Computerized Flight Planning",
-    subtitle: "Optimized route planning",
-    description: `JSI flight planning department plans your flight with the most direct and cost effective routes from any location. En-route wind and temperature aloft computation ETP/ETOPS are taken into account.`,
-    image: "/service-4.svg"
+    title: "Flight Planning",
+    description:
+      "Our flight planning department plans your flight with the most direct and cost effective routes. En-route wind and temperature aloft computations are taken into account.",
+    image: "/service-4.svg",
   },
 ];
 
-const PageContainer = styled.div`
+const stats = [
+  { number: "1,600+", label: "Global Locations" },
+  { number: "24/7", label: "Support Available" },
+  { number: "100%", label: "Safety Record" },
+  { number: "15+", label: "Years Experience" },
+];
+
+const Page = styled.div`
   background: #fff;
 `;
 
-const HeroSection = styled.section`
+const Hero = styled.section`
   height: 100vh;
-  background: linear-gradient(135deg, rgba(13, 62, 105, 0.9) 0%, rgba(13, 62, 105, 0.7) 100%),
-              url('/services3.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background: url("/services3.jpeg") center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55));
+  }
 `;
 
-const HeroContent = styled(motion.div)`
+const HeroInner = styled(motion.div)`
   text-align: center;
-  color: white;
-  max-width: 1200px;
-  padding: 0 20px;
-  z-index: 2;
+  color: #fff;
+  max-width: 800px;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+`;
+
+const HeroLabel = styled.p`
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
 `;
 
 const HeroTitle = styled(motion.h1)`
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 700;
-  margin-bottom: 2rem;
-  line-height: 1.1;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-`;
-
-const HeroSubtitle = styled(motion.p)`
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-  margin-bottom: 3rem;
-  color: white;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
-  font-weight: 400;
-`;
-
-const HeroButton = styled(motion(Link))`
-  background: linear-gradient(135deg, #0d3e69 0%, #1a5490 100%);
-  color: white;
-  border: none;
-  padding: 20px 45px;
-  font-size: 1.1rem;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(3rem, 7vw, 5rem);
   font-weight: 600;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 10px 30px rgba(13, 62, 105, 0.3);
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  letter-spacing: 0.5px;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+`;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
+const HeroDesc = styled(motion.p)`
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
+  font-weight: 300;
+`;
+
+const Section = styled.section`
+  padding: 120px 2rem;
+  background: ${(props) => props.$bg || "#fff"};
+`;
+
+const Inner = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const Label = styled.p`
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: ${(props) => (props.$light ? "rgba(255,255,255,0.5)" : "#999")};
+  margin-bottom: 1rem;
+  text-align: center;
+`;
+
+const Title = styled(motion.h2)`
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: ${(props) => (props.$light ? "#fff" : "#0d3e5c")};
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  text-align: center;
+`;
+
+const Desc = styled(motion.p)`
+  font-size: 1rem;
+  color: ${(props) => (props.$light ? "rgba(255,255,255,0.7)" : "#777")};
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto 60px;
+  text-align: center;
+`;
+
+const ServiceRow = styled(motion.div)`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid #eee;
+  padding: 3rem 0;
+
+  &:last-child {
+    border-bottom: 1px solid #eee;
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+`;
+
+const ServiceImg = styled.div`
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+
+  img {
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.6s;
+    object-fit: cover;
+    transition: transform 0.6s ease;
   }
 
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(13, 62, 105, 0.4);
-    background: linear-gradient(135deg, #1a5490 0%, #2563eb 100%);
-  }
-
-  &:hover::before {
-    left: 100%;
-  }
-
-  &:active {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 25px rgba(13, 62, 105, 0.3);
-  }
-
-  svg {
-    transition: transform 0.3s ease;
-  }
-
-  &:hover svg {
-    transform: translateX(3px);
-  }
-`;
-
-const ServicesSection = styled.section`
-  padding: 120px 20px;
-  background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
-`;
-
-const SectionHeader = styled.div`
-  text-align: center;
-  max-width: 1000px;
-  margin: 0 auto 80px;
-`;
-
-const SectionTitle = styled(motion.h2)`
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 700;
-  color: #0d3e69;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-`;
-
-const SectionSubtitle = styled(motion.p)`
-  font-size: 1.2rem;
-  color: #6c757d;
-  line-height: 1.7;
-  font-weight: 400;
-`;
-
-const ServicesGrid = styled.div`
-  max-width: 1400px;
-  margin: 0 auto;
-  display: grid;
-  gap: 80px;
-`;
-
-const ServiceCard = styled(motion.div)`
-  display: grid;
-  grid-template-columns: ${props => props.reverse ? '1fr 1fr' : '1fr 1fr'};
-  gap: 80px;
-  align-items: center;
-  background: white;
-  border-radius: 20px;
-  padding: 60px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-  }
-
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 40px;
-    text-align: center;
+  &:hover img {
+    transform: scale(1.03);
   }
 `;
 
 const ServiceContent = styled.div`
-  order: ${props => props.reverse ? 2 : 1};
-
-  @media (max-width: 1024px) {
-    order: 2;
-  }
-`;
-
-const ServiceImage = styled.div`
-  order: ${props => props.reverse ? 1 : 2};
-  position: relative;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-
-  @media (max-width: 1024px) {
-    order: 1;
-  }
-
-  img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-
-  &:hover img {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 1024px) {
-    img {
-      height: 300px;
-    }
-  }
-`;
-
-const ServiceIcon = styled.div`
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #0d3e69 0%, #1a5490 100%);
-  border-radius: 20px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  margin-bottom: 2rem;
-  color: white;
-  font-size: 2rem;
-  box-shadow: 0 8px 25px rgba(13, 62, 105, 0.3);
-
-  @media (max-width: 1024px) {
-    margin: 0 auto 2rem;
-  }
+  gap: 1rem;
+  padding: 1.5rem 0;
 `;
 
 const ServiceTitle = styled.h3`
-  font-size: 2.2rem;
-  color: #0d3e69;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  line-height: 1.3;
-
-  @media (max-width: 768px) {
-    font-size: 1.8rem;
-  }
-`;
-
-const ServiceSubtitle = styled.p`
-  font-size: 1rem;
-  color: #6c757d;
-  margin-bottom: 1.5rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-`;
-
-const ServiceDescription = styled.p`
-  font-size: 1.1rem;
-  color: #6c757d;
-  line-height: 1.7;
-  margin-bottom: 2rem;
-`;
-
-const ServiceLink = styled(Link)`
-  color: #0d3e69;
+  font-family: "Playfair Display", serif;
+  font-size: 1.75rem;
+  color: #0d3e5c;
   font-weight: 600;
-  text-decoration: none;
+`;
+
+const ServiceDesc = styled.p`
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.8;
+`;
+
+const DiscoverLink = styled(Link)`
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
+  gap: 0.5rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0d3e5c;
+  transition: gap 0.3s ease;
 
   &:hover {
-    gap: 15px;
-    color: #1a5490;
+    gap: 0.8rem;
+    color: #0d3e5c;
   }
-
-  svg {
-    transition: transform 0.3s ease;
-  }
-
-  &:hover svg {
-    transform: translateX(3px);
-  }
-`;
-
-const StatsSection = styled.section`
-  background: #0d3e69;
-  padding: 120px 20px;
-  color: white;
 `;
 
 const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.1);
 
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
   }
 `;
 
-const StatItem = styled(motion.div)`
+const StatCard = styled(motion.div)`
+  background: #0d3e5c;
   text-align: center;
-  padding: 40px 20px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-5px);
-  }
+  padding: 3rem 2rem;
 `;
 
-const StatNumber = styled.div`
-  font-size: 3rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
+const StatNum = styled.div`
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
 `;
 
 const StatLabel = styled.div`
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.8);
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
   font-weight: 500;
-  letter-spacing: 1px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
 `;
 
-const CTASection = styled.section`
-  background: linear-gradient(135deg, #f8faff 0%, #e3f2fd 100%);
-  padding: 120px 20px;
-  text-align: center;
-`;
-
-const CTAContent = styled(motion.div)`
-  max-width: 800px;
-  margin: 0 auto;
-`;
-
-const CTATitle = styled.h2`
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-  color: #0d3e69;
-
-  @media (max-width: 768px) {
-    font-size: 2rem;
-  }
-`;
-
-const CTADescription = styled.p`
-  font-size: 1.2rem;
-  line-height: 1.7;
-  margin-bottom: 3rem;
-  color: #6c757d;
-`;
-
-const CTAButton = styled(motion(Link))`
-  background: linear-gradient(135deg, #0d3e69 0%, #1a5490 100%);
-  color: white;
-  border: none;
-  padding: 20px 45px;
-  font-size: 1.1rem;
+const CTAButton = styled(Link)`
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
   font-weight: 600;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 10px 30px rgba(13, 62, 105, 0.3);
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  letter-spacing: 0.5px;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.6s;
-  }
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #0d3e5c;
+  padding: 1rem 2.5rem;
+  display: inline-block;
+  transition: all 0.3s ease;
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(13, 62, 105, 0.4);
-    background: linear-gradient(135deg, #1a5490 0%, #2563eb 100%);
-  }
-
-  &:hover::before {
-    left: 100%;
-  }
-
-  &:active {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 25px rgba(13, 62, 105, 0.3);
-  }
-
-  svg {
-    transition: transform 0.3s ease;
-  }
-
-  &:hover svg {
-    transform: translateX(3px);
+    background: #0a6e7f;
+    color: #fff;
   }
 `;
 
 const Services = () => {
   return (
-    <PageContainer>
-      <HeroSection>
-        <HeroContent
-          initial={{ opacity: 0, y: 50 }}
+    <Page>
+      <Hero>
+        <HeroInner
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
         >
+          <HeroLabel>Our Services</HeroLabel>
           <HeroTitle
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-          >
-            Aviation Excellence, Delivered
-          </HeroTitle>
-          <HeroSubtitle
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
-          >
-            Delivering excellence in aviation services with global expertise and unwavering commitment to safety.
-          </HeroSubtitle>
-          <HeroButton
-            to="/contactus"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Discover More <FaArrowRight />
-          </HeroButton>
-        </HeroContent>
-      </HeroSection>
-
-      <ServicesSection>
-        <SectionHeader>
-          <SectionTitle
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            Our Services
-          </SectionTitle>
-          <SectionSubtitle
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Aviation Excellence
+          </HeroTitle>
+          <HeroDesc
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Delivering excellence in aviation services with global expertise and
+            unwavering commitment to safety.
+          </HeroDesc>
+        </HeroInner>
+      </Hero>
+
+      <Section>
+        <Inner>
+          <Label>What We Do</Label>
+          <Title
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            We provide comprehensive aviation services designed to meet the highest standards of excellence and safety in the industry.
-          </SectionSubtitle>
-        </SectionHeader>
+            Comprehensive Aviation Services
+          </Title>
+          <Desc
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            Meeting the highest standards of excellence and safety in the industry.
+          </Desc>
 
-        <ServicesGrid>
-          {data.map((service, index) => (
-            <ServiceCard
-              key={index}
-              reverse={index % 2 !== 0}
-              initial={{ opacity: 0, y: 50 }}
+          {servicesData.map((service, index) => (
+            <ServiceRow
+              key={service.title}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <ServiceContent reverse={index % 2 !== 0}>
-                <ServiceIcon>
-                  {service.icon}
-                </ServiceIcon>
-                <ServiceSubtitle>{service.subtitle}</ServiceSubtitle>
-                <ServiceTitle>{service.title}</ServiceTitle>
-                <ServiceDescription>{service.description}</ServiceDescription>
-                <ServiceLink to="/contactus">
-                  Learn More <FaArrowRight />
-                </ServiceLink>
-              </ServiceContent>
-              <ServiceImage reverse={index % 2 !== 0}>
-                <img src={service.image} alt={service.title} />
-              </ServiceImage>
-            </ServiceCard>
+              {index % 2 === 0 ? (
+                <>
+                  <ServiceImg>
+                    <img src={service.image} alt={service.title} />
+                  </ServiceImg>
+                  <ServiceContent>
+                    <ServiceTitle>{service.title}</ServiceTitle>
+                    <ServiceDesc>{service.description}</ServiceDesc>
+                    <DiscoverLink to="/contactus">
+                      Discover
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </DiscoverLink>
+                  </ServiceContent>
+                </>
+              ) : (
+                <>
+                  <ServiceContent>
+                    <ServiceTitle>{service.title}</ServiceTitle>
+                    <ServiceDesc>{service.description}</ServiceDesc>
+                    <DiscoverLink to="/contactus">
+                      Discover
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </DiscoverLink>
+                  </ServiceContent>
+                  <ServiceImg>
+                    <img src={service.image} alt={service.title} />
+                  </ServiceImg>
+                </>
+              )}
+            </ServiceRow>
           ))}
-        </ServicesGrid>
-      </ServicesSection>
+        </Inner>
+      </Section>
 
-      <StatsSection>
-        <SectionHeader>
-          <SectionTitle
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            style={{ color: 'white' }}
-          >
-            Our Track Record
-          </SectionTitle>
-          <SectionSubtitle
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            style={{ color: 'rgba(255, 255, 255, 0.8)' }}
-          >
-            Numbers that reflect our commitment to excellence and reliability in aviation services.
-          </SectionSubtitle>
-        </SectionHeader>
-
+      <Section $bg="#0d3e5c" style={{ padding: "0" }}>
         <StatsGrid>
-          <StatItem
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <StatNumber>1600+</StatNumber>
-            <StatLabel>Global Locations</StatLabel>
-          </StatItem>
-          <StatItem
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            <StatNumber>24/7</StatNumber>
-            <StatLabel>Support Available</StatLabel>
-          </StatItem>
-          <StatItem
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <StatNumber>100%</StatNumber>
-            <StatLabel>Safety Record</StatLabel>
-          </StatItem>
-          <StatItem
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <StatNumber>15+</StatNumber>
-            <StatLabel>Years Experience</StatLabel>
-          </StatItem>
+          {stats.map((stat, i) => (
+            <StatCard
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <StatNum>{stat.number}</StatNum>
+              <StatLabel>{stat.label}</StatLabel>
+            </StatCard>
+          ))}
         </StatsGrid>
-      </StatsSection>
+      </Section>
 
-      <CTASection>
-        <CTAContent
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <CTATitle>Ready to Experience Excellence?</CTATitle>
-          <CTADescription>
-            Contact us today to learn more about our comprehensive aviation services and how we can support your next journey.
-          </CTADescription>
-          <CTAButton
-            to="/contactus"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+      <Section $bg="#fafafa" style={{ textAlign: "center" }}>
+        <Inner>
+          <Label>Get Started</Label>
+          <Title
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
           >
-            Get in Touch <FaArrowRight />
-          </CTAButton>
-        </CTAContent>
-      </CTASection>
-    </PageContainer>
+            Ready to Experience Excellence?
+          </Title>
+          <Desc
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            Contact us today to learn more about our comprehensive aviation services.
+          </Desc>
+          <CTAButton to="/contactus">Get in Touch</CTAButton>
+        </Inner>
+      </Section>
+    </Page>
   );
 };
 

@@ -7,24 +7,19 @@ const Links = ({ classname, handleClick }) => (
   <ol className={classname}>
     <li>
       <Link onClick={handleClick} to={"/core"}>
-        Our Services
+        Services
       </Link>
     </li>
     <li>
       <Link onClick={handleClick} to={"/aircraftcharter"}>
-        Aircraft charters
+        Fly Private
       </Link>
     </li>
     <li>
       <Link onClick={handleClick} to={"/parts"}>
-        Aircraft parts procurement
+        Aircraft Parts
       </Link>
     </li>
-    {/* <li>
-      <Link onClick={handleClick} to={"/aboutus"}>
-        About us
-      </Link>
-    </li> */}
     <li>
       <Link onClick={handleClick} to={"/contactus"}>
         Contact
@@ -37,48 +32,59 @@ const Navbar = () => {
   const [expanded, setExpanded] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const scrollThreshold = 350;
-
-  const menuIconPath = !expanded ? "/hamburger.svg" : "/cross.svg";
-
   const onLinkClick = () => setExpanded(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > scrollThreshold) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (expanded) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [expanded]);
 
   return (
     <nav className={cx(styles.navbar, { [styles.scrolled]: scrolled })}>
-      {/* Logo */}
-      <a href="/">
-        <img className={styles.logo} src="/logo.png" />
-      </a>
+      <div className={styles.navInner}>
+        <a href="/" className={styles.logoLink}>
+          <img className={styles.logo} src="/logo.png" alt="Jetstream" />
+        </a>
 
-      {/* Links */}
-      <Links classname={styles.links} handleClick={onLinkClick} />
-      {/* Menu Icon */}
-      <button
-        className={cx(styles.menu)}
-        onClick={() => setExpanded(!expanded)}
-      >
-        <img src={menuIconPath} />
-      </button>
+        <Links classname={styles.links} handleClick={onLinkClick} />
+
+        <a href="/#charter" className={styles.ctaLink}>
+          Get a Quote
+        </a>
+
+        <button
+          className={styles.menu}
+          onClick={() => setExpanded(!expanded)}
+          aria-label="Toggle menu"
+        >
+          <span className={cx(styles.hamburger, { [styles.active]: expanded })}>
+            <span />
+            <span />
+            <span />
+          </span>
+        </button>
+      </div>
+
+      <div className={cx(styles.overlay, { [styles.visible]: expanded })} onClick={() => setExpanded(false)} />
       <div className={cx(styles.sideBar, { [styles.expanded]: expanded })}>
-        <Links classname={cx(styles.menuList)} handleClick={onLinkClick} />
-        <button className="primaryButton">Book a consultation</button>
+        <Links classname={styles.menuList} handleClick={onLinkClick} />
+        <a href="/#charter" className={styles.sidebarCta} onClick={onLinkClick}>
+          Get a Quote
+        </a>
       </div>
     </nav>
   );

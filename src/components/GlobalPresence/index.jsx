@@ -1,52 +1,58 @@
 import React, { useEffect, useRef, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { WorldMap } from "../WorldMap";
-// Fade-in animation
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+
+const Section = styled.section`
+  width: 100%;
+  padding: 100px 2rem;
+  background: #fafafa;
 `;
 
-const CenteredContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Inner = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
-// Styled Heading
+const Label = styled.p`
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #999;
+  text-align: center;
+  margin-bottom: 1rem;
+`;
+
 const Heading = styled.h2`
-  font-size: 3rem;
-  font-weight: 700;
-  color: #0d3e69;
-  opacity: ${(props) => (props.isVisible ? 1 : 0)};
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: #0d3e5c;
+  text-align: center;
+  margin-bottom: 4rem;
+  letter-spacing: -0.02em;
+  opacity: ${(props) => (props.$isVisible ? 1 : 0)};
   transform: ${(props) =>
-    props.isVisible ? "translateY(0)" : "translateY(20px)"};
-  transition: all 0.5s ease-out;
-  animation: ${(props) => props.isVisible && fadeIn} 1s forwards;
+    props.$isVisible ? "translateY(0)" : "translateY(20px)"};
+  transition: all 0.6s ease-out;
 `;
 
 const GlobalPresence = () => {
   const [isVisible, setIsVisible] = useState(false);
   const headingRef = useRef(null);
 
-  // Intersection Observer to detect when the heading is in view
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsVisible(true);
-            observer.disconnect(); // Disconnect once visible to avoid re-triggering
+            observer.disconnect();
           }
         });
       },
-      { threshold: 0.1 } // Trigger when 10% of the heading is visible
+      { threshold: 0.1 }
     );
 
     if (headingRef.current) {
@@ -59,14 +65,15 @@ const GlobalPresence = () => {
   }, []);
 
   return (
-    <div style={{ width: "80%" }}>
-      <CenteredContainer>
-        <Heading ref={headingRef} isVisible={isVisible}>
-          Our Global Presence
+    <Section>
+      <Inner>
+        <Label>Global Network</Label>
+        <Heading ref={headingRef} $isVisible={isVisible}>
+          Our Worldwide Presence
         </Heading>
-      </CenteredContainer>
-      <WorldMap />
-    </div>
+        <WorldMap />
+      </Inner>
+    </Section>
   );
 };
 

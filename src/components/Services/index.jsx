@@ -1,81 +1,82 @@
-import React from "react";
 import styles from "./Services.module.css";
-import Pill from "../Pill";
-import cx from "classnames";
+import { motion } from "framer-motion";
 
 const data = [
   {
     image: "/service-1.webp",
     title: "Ground Handling",
-    description: `JSI provides quality handling to all types of fleet from wheels down
-    to wheels up. Our extensive global network of top-notch partners can
-    help to ensure your ground support match your needs and expectations.`,
+    description:
+      "JSI provides quality handling to all types of fleet from wheels down to wheels up. Our extensive global network of top-notch partners ensures your ground support matches your needs.",
+    link: "/core",
   },
   {
     image: "/service-2.svg",
     title: "Flight Permits",
-    description: `Being physically present in Pakistan, GCC and Europe,
-    JSI can secure necessary approvals in the shortest possible time. Our
-    qualified and experienced team is available 24/7 to answer all your
-    questions regarding the support services that you require.`,
+    description:
+      "Being physically present in Pakistan, GCC and Europe, JSI can secure necessary approvals in the shortest possible time. Our qualified team is available 24/7.",
+    link: "/core",
+    reversed: true,
   },
   {
     image: "/service-3.svg",
     title: "Aircraft Refueling",
-    description: `JSI partners with the best fuel service providers and
-    major petroleum companies from around the world. As a result, we are
-    then able to bring you Jet A1 fuel at over 1,600 contracted locations
-    at a competitive and cost-efficient rate.`,
+    description:
+      "JSI partners with the best fuel service providers and major petroleum companies worldwide, bringing you Jet A1 fuel at over 1,600 contracted locations.",
+    link: "/core",
   },
   {
     image: "/service-4.svg",
-    title: "Computerized Flight Planning",
-    description: `JSI flight planning department plan your flight with the 
-    most direct and cost effective routes from any location. En-route wind
-    and temperature aloft computation ETP/ETOPS are also taken into account
-    during the flight planning process.`,
+    title: "Flight Planning",
+    description:
+      "Our flight planning department plans your flight with the most direct and cost effective routes. En-route wind and temperature aloft computations are taken into account.",
+    link: "/core",
+    reversed: true,
   },
 ];
 
-const Service = (props) => {
-  return (
-    <div className={styles.service}>
-      <div className={styles.serviceInner}>
-        <img
-          className={cx(styles.serviceImg, { [styles.reversed]: props.reversed })}
-          src={props.image}
-        />
-        <div className={styles.serviceContent}>
-          <h3 className={cx(styles.title, styles.gradient)}>{props.title}</h3>
-          <p>{props.description}</p>
-        </div>
-      </div>
+const ServiceCard = ({ image, title, description, link, reversed, index }) => (
+  <motion.div
+    className={`${styles.serviceCard} ${reversed ? styles.reversed : ""}`}
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.7, delay: index * 0.1 }}
+    viewport={{ once: true, margin: "-50px" }}
+  >
+    <div className={styles.imageWrapper}>
+      <img className={styles.serviceImg} src={image} alt={title} />
     </div>
-  );
-};
+    <div className={styles.serviceContent}>
+      <h3 className={styles.title}>{title}</h3>
+      <p className={styles.desc}>{description}</p>
+      <a href={link} className={styles.discoverLink}>
+        Discover
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </motion.div>
+);
 
 const Services = () => {
   return (
-    <div className={styles.container}>
-      <Pill
-        additionalClassnames={styles.pill}
-        text="From our excellency to yours"
-      />
-      <h2 className={styles.heading}>Our core competencies</h2>
+    <section className={styles.container}>
+      <motion.div
+        className={styles.header}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+      >
+        <p className={styles.label}>Our Expertise</p>
+        <h2 className={styles.heading}>Core Competencies</h2>
+      </motion.div>
       <div className={styles.servicesWrapper}>
-        {data.map((service) => (
-          <Service
-            key={service.title}
-            icon={service.icon}
-            image={service.image}
-            reversed={service.reversed}
-            title={service.title}
-            subtitle={service.subtitle}
-            description={service.description}
-          />
+        {data.map((service, index) => (
+          <ServiceCard key={service.title} {...service} index={index} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
